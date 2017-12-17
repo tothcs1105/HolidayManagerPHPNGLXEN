@@ -9,7 +9,6 @@
 namespace AppBundle\DataFixtures\ORM;
 
 use AppBundle\Entity\Holiday;
-use AppBundle\Common\PasswordGen;
 use AppBundle\Entity\Role;
 use AppBundle\Entity\User;
 use Doctrine\Common\DataFixtures\FixtureInterface;
@@ -70,12 +69,12 @@ class DataLoader implements FixtureInterface, ContainerAwareInterface
         //users
         $user1 = new User();
         $user1->setUName("Józsi");
-        $user1->setUPass(\AppBundle\Common\PasswordGen::GeneratePassword("admin"));
+        $user1->setUPass(sha1("admin"));
         $user1->setURole($role2);
 
         $user2 = new User();
         $user2->setUName("Béla");
-        $user2->setUPass(\AppBundle\Common\PasswordGen::GeneratePassword("user"));
+        $user2->setUPass(sha1("user"));
         $user2->setURole($role1);
 
         $this->em->persist($user1);

@@ -1,0 +1,42 @@
+<?php
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="users")
+ */
+class User
+{
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $u_id;
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $u_name;
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $u_pass;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Role", inversedBy="r_users")
+     * @ORM\JoinColumn(name="u_role", referencedColumnName="r_id")
+     */
+    private $u_role;
+
+    /**
+     * @ORM\OneToOne(targetEntity="AvailableHoliday", mappedBy="ah_user")
+     */
+    private $u_aholiday;
+
+    /**
+     * @ORM\OneToOne(targetEntity="TakenHoliday", mappedBy="th_user")
+     */
+    private $u_tholiday;
+}

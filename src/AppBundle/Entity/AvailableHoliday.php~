@@ -1,0 +1,35 @@
+<?php
+namespace AppBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ * @ORM\Table(name="available_holidays")
+ */
+class AvailableHoliday
+{
+    /**
+     * @ORM\Id
+     * @ORM\OneToOne(targetEntity="User", inversedBy="u_aholiday")
+     * @ORM\JoinColumn(name="ah_user", referencedColumnName="u_id")
+     */
+    private $ah_user;
+    /**
+     * @ORM\Id
+     * @ORM\OneToOne(targetEntity="Holiday", inversedBy="h_auser")
+     * @ORM\JoinColumn(name="ah_holiday", referencedColumnName="h_id")
+     */
+    private $ah_holiday;
+
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     */
+    private $ah_year;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $ah_days;
+}

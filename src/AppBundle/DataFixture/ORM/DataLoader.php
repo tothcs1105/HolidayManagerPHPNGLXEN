@@ -6,7 +6,7 @@
  * Time: 12:42 AM
  */
 
-namespace AppBundle\DataFixtures\ORM;
+namespace AppBundle\DataFixture\ORM;
 
 use AppBundle\Entity\Holiday;
 use AppBundle\Entity\Role;

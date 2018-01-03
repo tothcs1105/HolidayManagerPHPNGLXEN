@@ -9,7 +9,7 @@ IF "%1"=="" (
     echo %0 %clear% = Clear cache
     echo %0 %entity% = Generate entities
     echo %0 %database% = Initialize database from entities
-    echo %0 %fixtures% = Apply fixtures to database
+    echo %0 %fixture% = Apply fixtures to database
 )
 
 IF "%1"=="%clear%" (
@@ -39,5 +39,5 @@ IF "%1"=="%database%" (
 IF "%1"=="%fixture%" (
     echo Applying fixtures...
 
-    php bin/console doctrine:fixtures:load --no-interaction -vvv && echo Fixtures applied || echo ERROR!!!
+    php bin/console doctrine:fixtures:load --fixtures=src/AppBundle/DataFixture/ORM --no-interaction -vvv && echo Fixtures applied || echo ERROR!!!
 )

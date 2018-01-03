@@ -25,7 +25,7 @@ class TakenHoliday
     private $th_to;
     /**
      * @ORM\OneToOne(targetEntity="User", inversedBy="u_tholiday")
-     * @ORM\JoinColumn(name="th_user", referencedColumnName="u_id")
+     * @ORM\JoinColumn(name="th_user", referencedColumnName="u_name")
      */
     private $th_user;
     /**

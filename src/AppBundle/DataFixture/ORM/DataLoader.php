@@ -13,6 +13,7 @@ use AppBundle\Entity\Role;
 use AppBundle\Entity\User;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\DBAL\Logging\DebugStack;
 use Doctrine\ORM\EntityManager;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -52,8 +53,7 @@ class DataLoader implements FixtureInterface, ContainerAwareInterface
         $this->em = $manager;
         $manager->getConnection()->getConfiguration()->setSQLLogger(null);
 
-        $stackLogger = new \Doctrine\DBAL\Logging\DebugStack();
-        $echoLogger = new \Doctrine\DBAL\Logging\EchoSQLLogger();
+        $stackLogger = new DebugStack();
         $this->em->getConnection()->getConfiguration()->setSQLLogger($stackLogger);
 
         //roles

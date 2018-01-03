@@ -25,6 +25,12 @@ interface IUserService
     public function getUser($userId);
 
     /**
+     * @param $userName string
+     * @return User
+     */
+    public function getUserByUserName($userName);
+
+    /**
      * @param $user User
      */
     public function saveUser($user);

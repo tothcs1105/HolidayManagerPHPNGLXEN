@@ -10,12 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
 class User
 {
     /**
-     * @ORM\Column(type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $u_id;
-    /**
      * @ORM\Column(type="string")
      */
     private $u_name;
@@ -39,16 +34,6 @@ class User
      * @ORM\OneToOne(targetEntity="TakenHoliday", mappedBy="th_user")
      */
     private $u_tholiday;
-
-    /**
-     * Get uId
-     *
-     * @return integer
-     */
-    public function getUId()
-    {
-        return $this->u_id;
-    }
 
     /**
      * Set uName

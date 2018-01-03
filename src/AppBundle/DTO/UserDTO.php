@@ -43,5 +43,7 @@ class UserDTO extends BaseDTO
         $builder->add("password", TextType::class);
         //$builder->add("roleId", ChoiceType::class, array)
         $builder->add("Send", SubmitType::class);
+
+        return $builder->getForm();
     }
 }

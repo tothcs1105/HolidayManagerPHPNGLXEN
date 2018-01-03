@@ -34,7 +34,7 @@ class LoginDTO extends BaseDTO
     /**
      * @return string
      */
-    public function getUserName(): string
+    public function getUserName()
     {
         return $this->userName;
     }
@@ -50,7 +50,7 @@ class LoginDTO extends BaseDTO
     /**
      * @return string
      */
-    public function getPassword(): string
+    public function getPassword()
     {
         return $this->password;
     }

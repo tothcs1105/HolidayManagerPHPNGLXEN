@@ -23,6 +23,15 @@ class UserService extends CrudService implements IUserService
     }
 
     /**
+     * @param string $userName
+     * @return User|object
+     */
+    public function getUserByUserName($userName)
+    {
+        return $this->getRepo()->findOneBy(array("u_name"=>$userName));
+    }
+
+    /**
      * @return EntityRepository
      */
     function getRepo()

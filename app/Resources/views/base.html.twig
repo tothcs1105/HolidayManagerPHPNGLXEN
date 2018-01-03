@@ -7,6 +7,16 @@
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     <body>
+
+        {% set notices = app.session.flashbag.get('notice') %}
+        {% for flash_message in notices %}
+            <div class="flash-notice">
+                {{ flash_message|nl2br }}
+            </div>
+        {% endfor %}
+        {% if notices is not empty %}
+            <hr />
+        {% endif %}
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>

@@ -12,7 +12,7 @@ class AvailableHoliday
     /**
      * @ORM\Id
      * @ORM\OneToOne(targetEntity="User", inversedBy="u_aholiday")
-     * @ORM\JoinColumn(name="ah_user", referencedColumnName="u_id")
+     * @ORM\JoinColumn(name="ah_user", referencedColumnName="u_name")
      */
     private $ah_user;
     /**

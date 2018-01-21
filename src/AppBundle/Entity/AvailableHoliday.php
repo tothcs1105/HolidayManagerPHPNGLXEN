@@ -23,8 +23,8 @@ class AvailableHoliday
     private $ah_holiday;
 
     /**
-     * @ORM\Column(type="integer")
      * @ORM\Id
+     * @ORM\Column(type="integer")
      */
     private $ah_year;
 
@@ -34,9 +34,9 @@ class AvailableHoliday
     private $ah_days;
 
     /**
-     * Set ahYear
+     * Set ahYear.
      *
-     * @param integer $ahYear
+     * @param int $ahYear
      *
      * @return AvailableHoliday
      */
@@ -48,9 +48,9 @@ class AvailableHoliday
     }
 
     /**
-     * Get ahYear
+     * Get ahYear.
      *
-     * @return integer
+     * @return int
      */
     public function getAhYear()
     {
@@ -58,9 +58,9 @@ class AvailableHoliday
     }
 
     /**
-     * Set ahDays
+     * Set ahDays.
      *
-     * @param integer $ahDays
+     * @param int $ahDays
      *
      * @return AvailableHoliday
      */
@@ -72,9 +72,9 @@ class AvailableHoliday
     }
 
     /**
-     * Get ahDays
+     * Get ahDays.
      *
-     * @return integer
+     * @return int
      */
     public function getAhDays()
     {
@@ -82,7 +82,7 @@ class AvailableHoliday
     }
 
     /**
-     * Set ahUser
+     * Set ahUser.
      *
      * @param \AppBundle\Entity\User $ahUser
      *
@@ -96,7 +96,7 @@ class AvailableHoliday
     }
 
     /**
-     * Get ahUser
+     * Get ahUser.
      *
      * @return \AppBundle\Entity\User
      */
@@ -106,7 +106,7 @@ class AvailableHoliday
     }
 
     /**
-     * Set ahHoliday
+     * Set ahHoliday.
      *
      * @param \AppBundle\Entity\Holiday $ahHoliday
      *
@@ -120,7 +120,7 @@ class AvailableHoliday
     }
 
     /**
-     * Get ahHoliday
+     * Get ahHoliday.
      *
      * @return \AppBundle\Entity\Holiday
      */

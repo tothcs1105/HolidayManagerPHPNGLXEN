@@ -9,12 +9,15 @@
 namespace AppBundle\Service\Factory;
 
 use AppBundle\Entity\Holiday;
+use AppBundle\Entity\Role;
 use AppBundle\Service\Declaration\IAvailableHolidayService;
 use AppBundle\Service\Declaration\IHolidayService;
+use AppBundle\Service\Declaration\IRoleService;
 use AppBundle\Service\Declaration\ITakenHolidayService;
 use AppBundle\Service\Declaration\IUserService;
 use AppBundle\Service\Implementation\AvailableHolidayService;
 use AppBundle\Service\Implementation\HolidayService;
+use AppBundle\Service\Implementation\RoleService;
 use AppBundle\Service\Implementation\TakenHolidayService;
 use AppBundle\Service\Implementation\UserService;
 use Doctrine\ORM\EntityManager;
@@ -59,5 +62,12 @@ class ServiceFactory
      */
     public function getHolidayService(){
         return new HolidayService($this->entityManager);
+    }
+
+    /**
+     * @return IRoleService
+     */
+    public function getRoleService(){
+        return new RoleService($this->entityManager);
     }
 }

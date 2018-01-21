@@ -19,6 +19,9 @@ services:
     app.availableholidayservice:
         class: AppBundle\Service\Declaration\IAvailableHolidayService
         factory: ["@app.servicefactory", getAvailableHolidayService]
+    app.roleservice:
+        class: AppBundle\Service\Declaration\IRoleService
+        factory: ["@app.servicefactory", getRoleService]
 
 #    service_name:
 #        class: AppBundle\Directory\ClassName

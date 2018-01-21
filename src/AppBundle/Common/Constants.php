@@ -15,4 +15,5 @@ class Constants
     const TAKEN_HOLIDAY_SERVICE = "app.takenholidayservice";
     const AVAILABLE_HOLIDAY_SERVICE = "app.availableholidayservice";
     const HOLIDAY_SERVICE = "app.holidayservice";
+    const ROLE_SERVICE = "app.roleservice";
 }

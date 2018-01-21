@@ -20,6 +20,10 @@ class User
     private $u_pass;
 
     /**
+     * @ORM\Column(type="boolean")
+     */
+    private $u_admin;
+    /**
      * @ORM\ManyToOne(targetEntity="Role", inversedBy="r_users")
      * @ORM\JoinColumn(name="u_role", referencedColumnName="r_id")
      */
@@ -229,5 +233,29 @@ class User
     public function getUTholidays()
     {
         return $this->u_tholidays;
+    }
+
+    /**
+     * Set uAdmin.
+     *
+     * @param bool $uAdmin
+     *
+     * @return User
+     */
+    public function setUAdmin($uAdmin)
+    {
+        $this->u_admin = $uAdmin;
+
+        return $this;
+    }
+
+    /**
+     * Get uAdmin.
+     *
+     * @return bool
+     */
+    public function getUAdmin()
+    {
+        return $this->u_admin;
     }
 }

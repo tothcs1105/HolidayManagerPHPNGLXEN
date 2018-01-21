@@ -60,10 +60,10 @@ class DataLoader implements FixtureInterface, ContainerAwareInterface
 
         //roles
         $role1 = new Role();
-        $role1->setRName("Normal");
+        $role1->setRName("Manager");
 
         $role2 = new Role();
-        $role2->setRName("Admin");
+        $role2->setRName("Editor");
 
         $this->em->persist($role1);
         $this->em->persist($role2);
@@ -72,11 +72,13 @@ class DataLoader implements FixtureInterface, ContainerAwareInterface
         $user1 = new User();
         $user1->setUName("Józsi");
         $user1->setUPass(sha1("admin"));
+        $user1->setUAdmin(true);
         $user1->setURole($role2);
 
         $user2 = new User();
         $user2->setUName("Béla");
         $user2->setUPass(sha1("user"));
+        $user2->setUAdmin(false);
         $user2->setURole($role1);
 
         $this->em->persist($user1);
@@ -95,6 +97,8 @@ class DataLoader implements FixtureInterface, ContainerAwareInterface
         $this->em->persist($holiday1);
         $this->em->persist($holiday2);
         $this->em->persist($holiday3);
+
+        $this->em->flush();
 
         //availableholiday
         $availableHoliday = new AvailableHoliday();

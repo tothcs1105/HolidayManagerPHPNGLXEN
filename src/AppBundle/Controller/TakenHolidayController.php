@@ -155,6 +155,7 @@ class TakenHolidayController extends BaseController
         $loggedUser = $this->checkLogin();
         $params = array();
         $this->takenHolidayService->deleteTakenHoliday($id);
+        $this->addFlash(Constants::TWIG_NOTICE, "Taken holiday removed successfully!");
         return $this->redirectToRoute("holidayList");
     }
 }

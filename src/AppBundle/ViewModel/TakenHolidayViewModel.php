@@ -2,13 +2,8 @@
 
 namespace AppBundle\ViewModel;
 
-class TakenHolidayViewModel extends HolidayViewModelBase
+class TakenHolidayViewModel extends HolidayViewModel
 {
-    /**
-     * @var int
-     */
-    private $takenHolidayId;
-
     /**
      * @var string
      */
@@ -29,25 +24,9 @@ class TakenHolidayViewModel extends HolidayViewModelBase
     function __construct($holidayId, $holidayName, $from, $to)
     {
         parent::__construct($holidayName);
-        $this->takenHolidayId = $holidayId;
+        $this->holidayId = $holidayId;
         $this->from = $from;
         $this->to = $to;
-    }
-
-    /**
-     * @return int
-     */
-    public function getTakenHolidayId(): int
-    {
-        return $this->takenHolidayId;
-    }
-
-    /**
-     * @param int $takenHolidayId
-     */
-    public function setTakenHolidayId(int $takenHolidayId)
-    {
-        $this->takenHolidayId = $takenHolidayId;
     }
 
     /**

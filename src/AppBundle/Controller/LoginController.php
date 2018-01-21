@@ -40,7 +40,10 @@ class LoginController extends BaseController
             $user = $this->userService->getUserByUserName($loginDto->getUserName());
             if($user){
                 if(sha1($loginDto->getPassword()) == $user->getUPass()){
-                    $this->get('session')->set(Constants::USER_VARIABLE_NAME, $user->getUName());
+                    $this->get('session')->set(Constants::USER_KEY, $user->getUName());
+                    if($user->getUAdmin() == true){
+                        $this->get('session')->set(Constants::ADMIN_USER_KEY, true);
+                    }
                     $this->addFlash(Constants::TWIG_NOTICE, "Logged in successfully!");
                     return $this->redirectToRoute("holidayList");
                 }else{

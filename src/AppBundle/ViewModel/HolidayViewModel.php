@@ -9,7 +9,7 @@
 namespace AppBundle\ViewModel;
 
 
-abstract class HolidayViewModelBase
+class HolidayViewModel
 {
     /**
      * @var string
@@ -17,7 +17,27 @@ abstract class HolidayViewModelBase
     protected $holidayName;
 
     /**
-     * HolidayViewModelBase constructor.
+     * @return int
+     */
+    public function getHolidayId(): int
+    {
+        return $this->holidayId;
+    }
+
+    /**
+     * @param int $holidayId
+     */
+    public function setHolidayId(int $holidayId)
+    {
+        $this->holidayId = $holidayId;
+    }
+
+    /**
+     * @var int
+     */
+    protected $holidayId;
+
+    /**
      * @param $holidayName string
      */
     function __construct($holidayName)

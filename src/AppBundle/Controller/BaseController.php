@@ -11,10 +11,25 @@ abstract class BaseController extends Controller
      */
     protected function checkLogin()
     {
-        $loggedUser = $this->get('session')->get(Constants::USER_VARIABLE_NAME);
+        $loggedUser = $this->get('session')->get(Constants::USER_KEY);
         if(!$loggedUser){
+            $this->addFlash(Constants::TWIG_NOTICE, "You have to login first!");
             throw $this->createAccessDeniedException();
         }
         return $loggedUser;
+    }
+
+    /**
+     * @return bool
+     */
+    protected function checkAdmin(){
+        $this->checkLogin();
+        $admin = $this->get('session')->get(Constants::ADMIN_USER_KEY);
+        if($admin == true){
+            return true;
+        }else{
+            $this->addFlash(Constants::TWIG_NOTICE, "You don't have administrator privileges!");
+            return false;
+        }
     }
 }

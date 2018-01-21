@@ -14,7 +14,8 @@
         {% endjavascripts %}
     </head>
     <body>
-        {% set user = app.session.get(constant('AppBundle\\Common\\Constants::USER_VARIABLE_NAME')) %}
+        {% set user = app.session.get(constant('AppBundle\\Common\\Constants::USER_KEY')) %}
+        {% set admin = app.session.get(constant('AppBundle\\Common\\Constants::ADMIN_USER_KEY')) %}
         {% set notices = app.session.flashbag.get(constant('AppBundle\\Common\\Constants::TWIG_NOTICE')) %}
         {% for flash_message in notices %}
             <script>
@@ -34,6 +35,9 @@
                 <ul class="nav navbar-nav">
                     {% if user %}
                         <li><a href="{{ path("selectAvailableHoliday") }}">Available Holidays</a></li>
+                    {% endif %}
+                    {% if admin == true %}
+                        <li><a href="{{ path("holidayTypes") }}">Holiday Types</a></li>
                     {% endif %}
                 </ul>
                 <ul class="nav navbar-nav navbar-right">

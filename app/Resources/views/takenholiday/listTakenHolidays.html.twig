@@ -3,7 +3,9 @@
 {% block body %}
     <div class="container">
         <div class="panel panel-primary">
-            <div class="panel-heading">Taken Holidays</div>
+            <div class="panel-heading clearfix">
+                <h2 class="panel-title pull-left hm-panel-title">Taken Holidays</h2>
+            </div>
             <div class="panel-body">
                 {% if takenHolidays %}
                     <table class="table table-striped table-hover">
@@ -12,7 +14,7 @@
                                 <th>Holiday Type</th>
                                 <th>From</th>
                                 <th>To</th>
-                                <th>Remove</th>
+                                <th class="text-center">Delete</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -21,7 +23,7 @@
                                     <td>{{ takenHoliday.getHolidayName() }}</td>
                                     <td>{{ takenHoliday.getFrom() }}</td>
                                     <td>{{ takenHoliday.getTo() }}</td>
-                                    <td><a href="{{ path("deleteTakenHoliday", {'id' : takenHoliday.getHolidayId() }) }}">Remove</a></td>
+                                    <td align="center"><a href="{{ path("deleteTakenHoliday", {'id' : takenHoliday.getHolidayId() }) }}"><span class="glyphicon glyphicon-minus"></a></td>
                                 </tr>
                             {% endfor %}
                         </tbody>

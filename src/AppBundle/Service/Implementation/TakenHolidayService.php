@@ -46,4 +46,15 @@ class TakenHolidayService extends CrudService implements ITakenHolidayService
         $this->em->persist($holiday);
         $this->em->flush();
     }
+
+    function getTakenHolidaysByHolidayId($holidayId)
+    {
+        $query = $this->getRepo()->createQueryBuilder('t')
+            ->join('t.th_holiday', 'h')
+            ->where('h.h_id = :hid')
+            ->setParameter('hid', $holidayId)
+            ->getQuery();
+
+        return $query->getResult();
+    }
 }

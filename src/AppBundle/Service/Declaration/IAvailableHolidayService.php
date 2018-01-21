@@ -27,6 +27,12 @@ interface IAvailableHolidayService
     function getAvailableHoliday($userName, $holidayId, $year);
 
     /**
+     * @param $holidayId int
+     * @return AvailableHoliday[]
+     */
+    function getAvailableHolidaysByHolidayId($holidayId);
+
+    /**
      * @param $userName string
      * @return AvailableHoliday[]
      */

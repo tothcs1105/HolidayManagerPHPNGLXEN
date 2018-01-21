@@ -21,9 +21,15 @@ interface ITakenHolidayService
 
     /**
      * @return TakenHoliday
-     * @param $holidayId int
+     * @param $takenHolidayId int
      */
-    function getTakenHoliday($holidayId);
+    function getTakenHoliday($takenHolidayId);
+
+    /**
+     * @param $holidayId int
+     * @return TakenHoliday[]
+     */
+    function getTakenHolidaysByHolidayId($holidayId);
 
     /**
      * @param $user string
@@ -32,9 +38,9 @@ interface ITakenHolidayService
     function getTakenHolidaysByUser($userName);
 
     /**
-     * @param $holidayId int
+     * @param $takenHolidayId int
      */
-    function deleteTakenHoliday($holidayId);
+    function deleteTakenHoliday($takenHolidayId);
 
     /**
      * @param $holiday TakenHoliday

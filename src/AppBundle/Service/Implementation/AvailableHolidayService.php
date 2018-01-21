@@ -8,6 +8,7 @@
 
 namespace AppBundle\Service\Implementation;
 
+use AppBundle\Entity\AvailableHoliday;
 use AppBundle\Service\Declaration\IAvailableHolidayService;
 use Doctrine\ORM\EntityManager;
 
@@ -51,4 +52,14 @@ class AvailableHolidayService extends CrudService implements IAvailableHolidaySe
         $this->em->flush();
     }
 
+    function getAvailableHolidaysByHolidayId($holidayId)
+    {
+        $query = $this->getRepo()->createQueryBuilder('a')
+        ->join('a.ah_holiday', 'h')
+        ->where('h.h_id = :hid')
+        ->setParameter('hid', $holidayId)
+        ->getQuery();
+
+        return $query->getResult();
+    }
 }

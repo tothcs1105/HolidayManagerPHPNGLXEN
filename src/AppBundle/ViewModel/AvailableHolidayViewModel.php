@@ -24,8 +24,7 @@ class AvailableHolidayViewModel extends HolidayViewModel
      */
     function __construct($holidayName, $holidayId, $yearDayDictionary)
     {
-        parent::__construct($holidayName);
-        $this->holidayId = $holidayId;
+        parent::__construct($holidayId, $holidayName);
         $this->yearDayDictionary = $yearDayDictionary;
     }
 

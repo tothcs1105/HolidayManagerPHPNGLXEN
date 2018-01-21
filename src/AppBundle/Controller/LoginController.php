@@ -45,7 +45,7 @@ class LoginController extends BaseController
                         $this->get('session')->set(Constants::ADMIN_USER_KEY, true);
                     }
                     $this->addFlash(Constants::TWIG_NOTICE, "Logged in successfully!");
-                    return $this->redirectToRoute("holidayList");
+                    return $this->redirectToRoute("takenHolidayList");
                 }else{
                     $this->addFlash(Constants::TWIG_NOTICE, "Wrong password!");
                 }

@@ -36,9 +36,10 @@ class HolidayDTO extends BaseDTO
         $this->holidayName = $holidayName;
     }
 
-    public function __construct($req, $container)
+    public function __construct($req, $container, $holidayName = "")
     {
         parent::__construct($req, $container);
+        $this->holidayName = $holidayName;
     }
 
     /**
@@ -48,8 +49,11 @@ class HolidayDTO extends BaseDTO
     {
         $builder = $this->formFactory->createBuilder(FormType::class, $this);
 
-        $builder->add("holidayName", TextType::class);
-        $builder->add("Send", SubmitType::class);
+        $builder->add("holidayName", TextType::class, array(
+            'required' => true,
+            'label' => "Name"
+        ));
+        $builder->add("Ok", SubmitType::class);
 
         return $builder->getForm();
     }

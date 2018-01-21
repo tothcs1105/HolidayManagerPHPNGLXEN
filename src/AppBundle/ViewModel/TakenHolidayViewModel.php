@@ -23,8 +23,7 @@ class TakenHolidayViewModel extends HolidayViewModel
      */
     function __construct($holidayId, $holidayName, $from, $to)
     {
-        parent::__construct($holidayName);
-        $this->holidayId = $holidayId;
+        parent::__construct($holidayId, $holidayName);
         $this->from = $from;
         $this->to = $to;
     }

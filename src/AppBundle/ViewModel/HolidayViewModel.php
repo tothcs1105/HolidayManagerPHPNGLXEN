@@ -38,10 +38,12 @@ class HolidayViewModel
     protected $holidayId;
 
     /**
+     * @param $holidayId int
      * @param $holidayName string
      */
-    function __construct($holidayName)
+    function __construct($holidayId, $holidayName)
     {
+        $this->holidayId = $holidayId;
         $this->holidayName = $holidayName;
     }
 

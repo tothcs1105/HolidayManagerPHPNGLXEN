@@ -50,7 +50,7 @@ class TakenHolidayController extends BaseController
     }
 
     /**
-     * @Route("/", name="holidayList")
+     * @Route("/", name="takenHolidayList")
      */
     public function listTakenHolidaysAction(Request $request){
         $loggedUser = $this->checkLogin();
@@ -72,6 +72,8 @@ class TakenHolidayController extends BaseController
 
     /**
      * @Route("/takeHoliday/{id}/{year}", name="takeHoliday")
+     * @param $id int
+     * @param $year int
      */
     public function takeAvailableHoliday(Request $request, $id, $year)
     {
@@ -97,7 +99,7 @@ class TakenHolidayController extends BaseController
                 $newTakenHoliday->setThTo($availableHolidayDto->getTo());
 
                 $this->takenHolidayService->saveTakenHoliday($newTakenHoliday);
-                return $this->redirectToRoute("holidayList");
+                return $this->redirectToRoute("takenHolidayList");
             }else{
                 $this->addFlash(Constants::TWIG_NOTICE, $message);
             }
@@ -150,12 +152,13 @@ class TakenHolidayController extends BaseController
 
     /**
      * @Route("/deleteTakenHoliday/{id}", name="deleteTakenHoliday")
+     * @param $id int
      */
-    public function deleteTakenHolidayAction(Request $request, int $id){
+    public function deleteTakenHolidayAction(Request $request, $id){
         $loggedUser = $this->checkLogin();
         $params = array();
         $this->takenHolidayService->deleteTakenHoliday($id);
         $this->addFlash(Constants::TWIG_NOTICE, "Taken holiday removed successfully!");
-        return $this->redirectToRoute("holidayList");
+        return $this->redirectToRoute("takenHolidayList");
     }
 }

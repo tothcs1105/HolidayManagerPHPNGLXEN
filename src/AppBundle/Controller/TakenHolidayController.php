@@ -141,46 +141,11 @@ class TakenHolidayController extends BaseController
                 $availableHolidayDays += $availableHoliday->getAhDays();
             }
         }
-        if($availableHolidayDays <= $takenDays) {
+        if($availableHolidayDays < $takenDays) {
             $message = "You do not have enough available holidays!";
             return false;
         }
         return true;
-    }
-
-    /**
-     * @Route("/availableHoliday", name="selectAvailableHoliday")
-     */
-    public function listAvailableHolidaysAction(Request $request)
-    {
-        $loggedUser = $this->checkLogin();
-        $params = array();
-        $availableHolidayEntities = $this->availableHolidayService->getAvailableHolidaysByUserName($loggedUser);
-        $params["availableHolidays"] = array();
-        if($availableHolidayEntities){
-            $availableHolidaysGrouped = array();
-            foreach ($availableHolidayEntities as $availableHoliday){
-                $holidayType = $availableHoliday->getAhHoliday();
-                if(array_key_exists($holidayType->getHId(), $availableHolidaysGrouped)){
-                    /**
-                     * @var $tmp AvailableHolidayViewModel
-                     */
-                    $tmp = $availableHolidaysGrouped[$holidayType->getHId()];
-                    $yearDayArray = $tmp->getYearDayDictionary();
-                    if(array_key_exists($availableHoliday->getAhYear(), $tmp->getYearDayDictionary())){
-                        $yearDayArray[$availableHoliday->getAhYear()] += $availableHoliday->getAhDays();
-                    }else{
-                        $yearDayArray[$availableHoliday->getAhYear()] = $availableHoliday->getAhDays();
-                    }
-                    $tmp->setYearDayDictionary($yearDayArray);
-                    $availableHolidaysGrouped[$holidayType->getHId()] = $tmp;
-                }else{
-                    $availableHolidaysGrouped[$holidayType->getHId()] = new AvailableHolidayViewModel($holidayType->getHName(), $holidayType->getHId(), array($availableHoliday->getAhYear() => $availableHoliday->getAhDays()));
-                }
-            }
-            $params["availableHolidays"] = $availableHolidaysGrouped;
-        }
-        return $this->render('takenholiday/selectAvailableHoliday.html.twig', $params);
     }
 
     /**

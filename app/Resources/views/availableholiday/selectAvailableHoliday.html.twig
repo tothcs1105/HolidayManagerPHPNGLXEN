@@ -12,7 +12,8 @@
                                 <thead>
                                 <tr>
                                     <th>Year</th>
-                                    <th>Day Count</th>
+                                    <th>Total Days</th>
+                                    <th>Days Left</th>
                                     <th>Take</th>
                                 </tr>
                                 </thead>
@@ -20,8 +21,9 @@
                                     {% for year, days in availableHoliday.getYearDayDictionary() %}
                                         <tr>
                                             <td>{{ year }}</td>
-                                            <td>{{ days }}</td>
-                                            <td><a href="{{ path("takeHoliday", {'id': availableHoliday.getHolidayId(), 'year': year }) }}">Take</a></td>
+                                            <td>{{ days['total'] }}</td>
+                                            <td>{{ days['left'] }}</td>
+                                            <td>{%  if days['left'] > 0 %}<a href="{{ path("takeHoliday", {'id': availableHoliday.getHolidayId(), 'year': year }) }}">Take</a>{% endif %}</td>
                                         </tr>
                                     {% endfor %}
                                 </tbody>

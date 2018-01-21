@@ -8,13 +8,16 @@
 
 namespace AppBundle\Service\Factory;
 
-
+use AppBundle\Entity\Holiday;
+use AppBundle\Service\Declaration\IAvailableHolidayService;
+use AppBundle\Service\Declaration\IHolidayService;
+use AppBundle\Service\Declaration\ITakenHolidayService;
 use AppBundle\Service\Declaration\IUserService;
+use AppBundle\Service\Implementation\AvailableHolidayService;
+use AppBundle\Service\Implementation\HolidayService;
+use AppBundle\Service\Implementation\TakenHolidayService;
 use AppBundle\Service\Implementation\UserService;
 use Doctrine\ORM\EntityManager;
-use Symfony\Component\Form\FormFactory;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
 
 class ServiceFactory
 {
@@ -35,5 +38,26 @@ class ServiceFactory
      */
     public function getUserService(){
         return new UserService($this->entityManager);
+    }
+
+    /**
+     * @return ITakenHolidayService
+     */
+    public function getTakenHolidayService(){
+        return new TakenHolidayService($this->entityManager);
+    }
+
+    /**
+     * @return IAvailableHolidayService
+     */
+    public function getAvailableHolidayService(){
+        return new AvailableHolidayService($this->entityManager);
+    }
+
+    /**
+     * @return IHolidayService
+     */
+    public function getHolidayService(){
+        return new HolidayService($this->entityManager);
     }
 }

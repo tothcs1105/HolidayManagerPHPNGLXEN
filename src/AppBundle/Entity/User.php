@@ -26,14 +26,14 @@ class User
     private $u_role;
 
     /**
-     * @ORM\OneToOne(targetEntity="AvailableHoliday", mappedBy="ah_user")
+     * @ORM\OneToMany(targetEntity="AvailableHoliday", mappedBy="ah_user")
      */
-    private $u_aholiday;
+    private $u_aholidays;
 
     /**
-     * @ORM\OneToOne(targetEntity="TakenHoliday", mappedBy="th_user")
+     * @ORM\OneToMany(targetEntity="TakenHoliday", mappedBy="th_user")
      */
-    private $u_tholiday;
+    private $u_tholidays;
 
     /**
      * Set uName
@@ -153,5 +153,81 @@ class User
     public function getUTholiday()
     {
         return $this->u_tholiday;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->u_aholidays = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->u_tholidays = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add uAholiday
+     *
+     * @param \AppBundle\Entity\AvailableHoliday $uAholiday
+     *
+     * @return User
+     */
+    public function addUAholiday(\AppBundle\Entity\AvailableHoliday $uAholiday)
+    {
+        $this->u_aholidays[] = $uAholiday;
+
+        return $this;
+    }
+
+    /**
+     * Remove uAholiday
+     *
+     * @param \AppBundle\Entity\AvailableHoliday $uAholiday
+     */
+    public function removeUAholiday(\AppBundle\Entity\AvailableHoliday $uAholiday)
+    {
+        $this->u_aholidays->removeElement($uAholiday);
+    }
+
+    /**
+     * Get uAholidays
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUAholidays()
+    {
+        return $this->u_aholidays;
+    }
+
+    /**
+     * Add uTholiday
+     *
+     * @param \AppBundle\Entity\TakenHoliday $uTholiday
+     *
+     * @return User
+     */
+    public function addUTholiday(\AppBundle\Entity\TakenHoliday $uTholiday)
+    {
+        $this->u_tholidays[] = $uTholiday;
+
+        return $this;
+    }
+
+    /**
+     * Remove uTholiday
+     *
+     * @param \AppBundle\Entity\TakenHoliday $uTholiday
+     */
+    public function removeUTholiday(\AppBundle\Entity\TakenHoliday $uTholiday)
+    {
+        $this->u_tholidays->removeElement($uTholiday);
+    }
+
+    /**
+     * Get uTholidays
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUTholidays()
+    {
+        return $this->u_tholidays;
     }
 }

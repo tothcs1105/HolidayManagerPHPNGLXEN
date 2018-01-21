@@ -8,8 +8,10 @@
 
 namespace AppBundle\DataFixture\ORM;
 
+use AppBundle\Entity\AvailableHoliday;
 use AppBundle\Entity\Holiday;
 use AppBundle\Entity\Role;
+use AppBundle\Entity\TakenHoliday;
 use AppBundle\Entity\User;
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -93,6 +95,32 @@ class DataLoader implements FixtureInterface, ContainerAwareInterface
         $this->em->persist($holiday1);
         $this->em->persist($holiday2);
         $this->em->persist($holiday3);
+
+        //availableholiday
+        $availableHoliday = new AvailableHoliday();
+        $availableHoliday->setAhYear(2018);
+        $availableHoliday->setAhUser($user1);
+        $availableHoliday->setAhDays(10);
+        $availableHoliday->setAhHoliday($holiday1);
+
+        $this->em->persist($availableHoliday);
+
+        $availableHoliday2 = new AvailableHoliday();
+        $availableHoliday2->setAhYear(2018);
+        $availableHoliday2->setAhUser($user1);
+        $availableHoliday2->setAhDays(8);
+        $availableHoliday2->setAhHoliday($holiday2);
+
+        $this->em->persist($availableHoliday2);
+
+        //takenholidays
+        $takenHoliday1 = new TakenHoliday();
+        $takenHoliday1->setThHoliday($holiday1);
+        $takenHoliday1->setThFrom(new \DateTime('2018-01-01'));
+        $takenHoliday1->setThTo(new \DateTime('2018-01-10'));
+        $takenHoliday1->setThUser($user1);
+
+        $this->em->persist($takenHoliday1);
 
         $this->em->flush();
 

@@ -7,9 +7,18 @@ services:
     app.servicefactory:
         class: AppBundle\Service\Factory\ServiceFactory
         arguments: ["@doctrine.orm.entity_manager"]
+    app.holidayservice:
+        class: AppBundle\Service\Declaration\IHolidayService
+        factory: ["@app.servicefactory", getHolidayService ]
     app.userservice:
         class: AppBundle\Service\Declaration\IUserService
         factory: ["@app.servicefactory", getUserService ]
+    app.takenholidayservice:
+        class: AppBundle\Service\Declaration\ITakenHolidayService
+        factory: ["@app.servicefactory", getTakenHolidayService ]
+    app.availableholidayservice:
+        class: AppBundle\Service\Declaration\IAvailableHolidayService
+        factory: ["@app.servicefactory", getAvailableHolidayService]
 
 #    service_name:
 #        class: AppBundle\Directory\ClassName

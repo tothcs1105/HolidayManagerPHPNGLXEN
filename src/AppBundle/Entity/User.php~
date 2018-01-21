@@ -26,14 +26,14 @@ class User
     private $u_role;
 
     /**
-     * @ORM\OneToOne(targetEntity="AvailableHoliday", mappedBy="ah_user")
+     * @ORM\OneToMany(targetEntity="AvailableHoliday", mappedBy="ah_user")
      */
-    private $u_aholiday;
+    private $u_aholidays;
 
     /**
-     * @ORM\OneToOne(targetEntity="TakenHoliday", mappedBy="th_user")
+     * @ORM\OneToMany(targetEntity="TakenHoliday", mappedBy="th_user")
      */
-    private $u_tholiday;
+    private $u_tholidays;
 
     /**
      * Set uName

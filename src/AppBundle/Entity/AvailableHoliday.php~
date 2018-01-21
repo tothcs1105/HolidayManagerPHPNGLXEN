@@ -11,13 +11,13 @@ class AvailableHoliday
 {
     /**
      * @ORM\Id
-     * @ORM\OneToOne(targetEntity="User", inversedBy="u_aholiday")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="u_aholidays")
      * @ORM\JoinColumn(name="ah_user", referencedColumnName="u_name")
      */
     private $ah_user;
     /**
      * @ORM\Id
-     * @ORM\OneToOne(targetEntity="Holiday", inversedBy="h_auser")
+     * @ORM\ManyToOne(targetEntity="Holiday", inversedBy="h_ausers")
      * @ORM\JoinColumn(name="ah_holiday", referencedColumnName="h_id")
      */
     private $ah_holiday;

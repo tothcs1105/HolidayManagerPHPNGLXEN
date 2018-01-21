@@ -1,15 +1,18 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: tothc
- * Date: 12/29/2017
- * Time: 6:06 AM
- */
 
 namespace AppBundle\Common;
 
 class Constants
 {
+    //other
     const USER_VARIABLE_NAME = "user";
+    const TWIG_NOTICE = "notice";
+    const DATE_FORMAT = "Y-m-d";
+    const FORM_PARAM_VALUE = "form";
 
+    //services
+    const USER_SERVICE = "app.userservice";
+    const TAKEN_HOLIDAY_SERVICE = "app.takenholidayservice";
+    const AVAILABLE_HOLIDAY_SERVICE = "app.availableholidayservice";
+    const HOLIDAY_SERVICE = "app.holidayservice";
 }

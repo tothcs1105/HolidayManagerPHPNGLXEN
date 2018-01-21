@@ -26,9 +26,9 @@ class LoginDTO extends BaseDTO
      */
     private $password;
 
-    public function __construct($req, $container, $em)
+    public function __construct($req, $container)
     {
-        parent::__construct($req, $container, $em);
+        parent::__construct($req, $container);
     }
 
     /**

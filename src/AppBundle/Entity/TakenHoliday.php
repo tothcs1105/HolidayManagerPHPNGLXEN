@@ -24,12 +24,12 @@ class TakenHoliday
      */
     private $th_to;
     /**
-     * @ORM\OneToOne(targetEntity="User", inversedBy="u_tholiday")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="u_tholidays")
      * @ORM\JoinColumn(name="th_user", referencedColumnName="u_name")
      */
     private $th_user;
     /**
-     * @ORM\OneToOne(targetEntity="Holiday", inversedBy="h_tuser")
+     * @ORM\ManyToOne(targetEntity="Holiday", inversedBy="h_tusers")
      * @ORM\JoinColumn(name="th_holiday", referencedColumnName="h_id")
      */
     private $th_holiday;

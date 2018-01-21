@@ -22,14 +22,14 @@ class Holiday
     private $h_name;
 
     /**
-     * @ORM\OneToOne(targetEntity="AvailableHoliday", mappedBy="ah_holiday")
+     * @ORM\OneToMany(targetEntity="AvailableHoliday", mappedBy="ah_holiday")
      */
-    private $h_auser;
+    private $h_ausers;
 
     /**
-     * @ORM\OneToOne(targetEntity="TakenHoliday", mappedBy="th_holiday")
+     * @ORM\OneToMany(targetEntity="TakenHoliday", mappedBy="th_holiday")
      */
-    private $h_tuser;
+    private $h_tusers;
 
     /**
      * Get hId

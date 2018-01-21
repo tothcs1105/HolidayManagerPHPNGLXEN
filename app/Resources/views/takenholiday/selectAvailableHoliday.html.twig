@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading">Select Available Holiday</div>
+                <div class="panel-body">
+                    {% if availableHolidays %}
+                        {% for availableHoliday in availableHolidays %}
+                            <table class="table table-striped table-hover">
+                                <caption>{{ availableHoliday.getHolidayName() }}</caption>
+                                <thead>
+                                <tr>
+                                    <th>Year</th>
+                                    <th>Day Count</th>
+                                    <th>Take</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{ availableHoliday.getYear() }}</td>
+                                        <td>{{ availableHoliday.getDays() }}</td>
+                                        <td><a href="{{ path("takeHoliday", {'id': availableHoliday.getHolidayId(), 'year': availableHoliday.getYear() }) }}">Take</a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        {% endfor %}
+                    {% else %}
+                        <strong>Currently you can't take any holiday!</strong>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

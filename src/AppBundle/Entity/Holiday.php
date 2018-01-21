@@ -22,14 +22,14 @@ class Holiday
     private $h_name;
 
     /**
-     * @ORM\OneToOne(targetEntity="AvailableHoliday", mappedBy="ah_holiday")
+     * @ORM\OneToMany(targetEntity="AvailableHoliday", mappedBy="ah_holiday")
      */
-    private $h_auser;
+    private $h_ausers;
 
     /**
-     * @ORM\OneToOne(targetEntity="TakenHoliday", mappedBy="th_holiday")
+     * @ORM\OneToMany(targetEntity="TakenHoliday", mappedBy="th_holiday")
      */
-    private $h_tuser;
+    private $h_tusers;
 
     /**
      * Get hId
@@ -111,5 +111,81 @@ class Holiday
     public function getHTuser()
     {
         return $this->h_tuser;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->h_ausers = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->h_tusers = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add hAuser
+     *
+     * @param \AppBundle\Entity\AvailableHoliday $hAuser
+     *
+     * @return Holiday
+     */
+    public function addHAuser(\AppBundle\Entity\AvailableHoliday $hAuser)
+    {
+        $this->h_ausers[] = $hAuser;
+
+        return $this;
+    }
+
+    /**
+     * Remove hAuser
+     *
+     * @param \AppBundle\Entity\AvailableHoliday $hAuser
+     */
+    public function removeHAuser(\AppBundle\Entity\AvailableHoliday $hAuser)
+    {
+        $this->h_ausers->removeElement($hAuser);
+    }
+
+    /**
+     * Get hAusers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getHAusers()
+    {
+        return $this->h_ausers;
+    }
+
+    /**
+     * Add hTuser
+     *
+     * @param \AppBundle\Entity\TakenHoliday $hTuser
+     *
+     * @return Holiday
+     */
+    public function addHTuser(\AppBundle\Entity\TakenHoliday $hTuser)
+    {
+        $this->h_tusers[] = $hTuser;
+
+        return $this;
+    }
+
+    /**
+     * Remove hTuser
+     *
+     * @param \AppBundle\Entity\TakenHoliday $hTuser
+     */
+    public function removeHTuser(\AppBundle\Entity\TakenHoliday $hTuser)
+    {
+        $this->h_tusers->removeElement($hTuser);
+    }
+
+    /**
+     * Get hTusers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getHTusers()
+    {
+        return $this->h_tusers;
     }
 }

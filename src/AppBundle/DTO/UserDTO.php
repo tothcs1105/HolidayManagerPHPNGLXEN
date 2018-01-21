@@ -30,9 +30,9 @@ class UserDTO extends BaseDTO
      */
     private $roleId;
 
-    public function __construct($req, $container, $em)
+    public function __construct($req, $container)
     {
-        parent::__construct($req, $container, $em);
+        parent::__construct($req, $container);
     }
 
     public function getForm()

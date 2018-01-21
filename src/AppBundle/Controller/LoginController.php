@@ -10,12 +10,11 @@ namespace AppBundle\Controller;
 
 use AppBundle\Common\Constants;
 use AppBundle\DTO\LoginDTO;
-use AppBundle\DTO\UserDTO;
 use AppBundle\Service\Declaration\IUserService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class LoginController extends BaseController
 {
@@ -27,7 +26,7 @@ class LoginController extends BaseController
     public function setContainer(ContainerInterface $container = null)
     {
         parent::setContainer($container);
-        $this->userService = $this->get("app.userservice");
+        $this->userService = $this->get(Constants::USER_SERVICE);
     }
 
     /**
@@ -41,8 +40,14 @@ class LoginController extends BaseController
             $user = $this->userService->getUserByUserName($loginDto->getUserName());
             if($user){
                 if(sha1($loginDto->getPassword()) == $user->getUPass()){
-                        $this->container->set(Constants::USER_VARIABLE_NAME);
-                    }
+                    $this->get('session')->set(Constants::USER_VARIABLE_NAME, $user->getUName());
+                    $this->addFlash(Constants::TWIG_NOTICE, "Logged in successfully!");
+                    return $this->redirectToRoute("holidayList");
+                }else{
+                    $this->addFlash(Constants::TWIG_NOTICE, "Wrong password!");
+                }
+            }else{
+                $this->addFlash(Constants::TWIG_NOTICE, "Wrong username!");
             }
         }
         $params = array();
@@ -54,6 +59,9 @@ class LoginController extends BaseController
      * @Route("/logout", name="logout")
      */
     public function logoutAction(){
-
+        $this->checkLogin();
+        $this->get('session')->clear();
+        $this->addFlash(Constants::TWIG_NOTICE, "Logged out successfully!");
+        return $this->redirectToRoute("login");
     }
 }

@@ -69,9 +69,15 @@ class LoginDTO extends BaseDTO
     public function getForm()
     {
         $builder = $this->formFactory->createBuilder(FormType::class, $this);
-        $builder->add("userName", TextType::class);
-        $builder->add("password", PasswordType::class);
-        $builder->add("Send", SubmitType::class);
+        $builder->add("userName", TextType::class, array(
+            'required' => true,
+            'label' => "Username"
+        ));
+        $builder->add("password", PasswordType::class, array(
+            'required' => true,
+            'label' => "Password"
+        ));
+        $builder->add("Login", SubmitType::class);
 
         return $builder->getForm();
     }

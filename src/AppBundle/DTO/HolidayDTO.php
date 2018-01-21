@@ -53,7 +53,7 @@ class HolidayDTO extends BaseDTO
             'required' => true,
             'label' => "Name"
         ));
-        $builder->add("Ok", SubmitType::class);
+        $builder->add("Submit", SubmitType::class);
 
         return $builder->getForm();
     }

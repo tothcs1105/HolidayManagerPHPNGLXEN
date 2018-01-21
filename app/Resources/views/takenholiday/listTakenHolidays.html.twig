@@ -1,10 +1,15 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}
+    Holiday Manager | Taken Holidays
+{% endblock %}
+
 {% block body %}
     <div class="container">
         <div class="panel panel-primary">
             <div class="panel-heading clearfix">
                 <h2 class="panel-title pull-left hm-panel-title">Taken Holidays</h2>
+                <a href="{{ path("selectAvailableHoliday") }}" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i></a>
             </div>
             <div class="panel-body">
                 {% if takenHolidays %}

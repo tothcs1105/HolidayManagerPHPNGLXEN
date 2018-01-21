@@ -70,11 +70,13 @@ class HolidayTypeController extends BaseController
      */
     public function addUpdateHolidayTypeAction(Request $request, $id = null){
         if($this->checkAdmin()){
+            $params = array();
             $holidayDto = null;
             if($id){
                 $holiday = $this->holidayService->getHoliday($id);
                 if($holiday){
                     $holidayDto = new HolidayDTO($request, $this->container, $holiday->getHName());
+                    $params["holiday"] = $holiday->getHName();
                 }else{
                     $this->addFlash(Constants::TWIG_NOTICE, "There is no such holiday type!");
                     return $this->redirectToRoute("takenHolidayList");
@@ -82,7 +84,6 @@ class HolidayTypeController extends BaseController
             }else{
                 $holidayDto = new HolidayDTO($request, $this->container);
             }
-            $params = array();
             $form = $holidayDto->getForm();
             $form->handleRequest($request);
             if($form->isSubmitted() && $form->isValid()){

@@ -1,10 +1,26 @@
 {% extends 'base.html.twig' %}
+
+
+{% block title %}
+    {% if holiday is defined %}
+        Holiday Manager | Edit Holiday Type: {{ holiday }}
+    {% else %}
+        Holiday Manager | New Holiday Type
+    {% endif %}
+{% endblock %}
+
 {% block body %}
     <div class="container">
         <div class="panel panel-primary">
             <div class="panel-heading clearfix">
                 <a href="{{ path("holidayTypes") }}" class="btn btn-primary pull-left back-button"><i class="glyphicon glyphicon-arrow-left"></i></a>
-                <h2 class="panel-title pull-left hm-panel-title">Holiday Type</h2>
+                <h2 class="panel-title pull-left hm-panel-title">
+                    {% if holiday is defined %}
+                        Edit Holiday Type: {{ holiday }}
+                    {% else %}
+                        New Holiday Type
+                    {% endif %}
+                </h2>
             </div>
             <div class="panel-body">
                 {% form_theme form 'bootstrap_3_layout.html.twig' %}

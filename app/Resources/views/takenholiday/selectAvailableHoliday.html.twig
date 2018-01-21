@@ -17,11 +17,13 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>{{ availableHoliday.getYear() }}</td>
-                                        <td>{{ availableHoliday.getDays() }}</td>
-                                        <td><a href="{{ path("takeHoliday", {'id': availableHoliday.getHolidayId(), 'year': availableHoliday.getYear() }) }}">Take</a></td>
-                                    </tr>
+                                    {% for year, days in availableHoliday.getYearDayDictionary() %}
+                                        <tr>
+                                            <td>{{ year }}</td>
+                                            <td>{{ days }}</td>
+                                            <td><a href="{{ path("takeHoliday", {'id': availableHoliday.getHolidayId(), 'year': year }) }}">Take</a></td>
+                                        </tr>
+                                    {% endfor %}
                                 </tbody>
                             </table>
                         {% endfor %}

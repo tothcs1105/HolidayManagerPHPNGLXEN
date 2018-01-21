@@ -106,12 +106,20 @@ class DataLoader implements FixtureInterface, ContainerAwareInterface
         $this->em->persist($availableHoliday);
 
         $availableHoliday2 = new AvailableHoliday();
-        $availableHoliday2->setAhYear(2018);
+        $availableHoliday2->setAhYear(2017);
         $availableHoliday2->setAhUser($user1);
-        $availableHoliday2->setAhDays(8);
-        $availableHoliday2->setAhHoliday($holiday2);
+        $availableHoliday2->setAhDays(9);
+        $availableHoliday2->setAhHoliday($holiday1);
 
         $this->em->persist($availableHoliday2);
+
+        $availableHoliday3 = new AvailableHoliday();
+        $availableHoliday3->setAhYear(2018);
+        $availableHoliday3->setAhUser($user1);
+        $availableHoliday3->setAhDays(8);
+        $availableHoliday3->setAhHoliday($holiday2);
+
+        $this->em->persist($availableHoliday3);
 
         //takenholidays
         $takenHoliday1 = new TakenHoliday();

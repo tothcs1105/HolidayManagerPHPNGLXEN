@@ -16,20 +16,21 @@ class AvailableHolidayViewModel extends HolidayViewModelBase
      */
     private $holidayId;
     /**
-     * @var int
+     * @var array
      */
-    private $year;
-    /**
-     * @var int
-     */
-    private $days;
+    private $yearDayDictionary;
 
-    function __construct($holidayName, $holidayId, $year, $days)
+    /**
+     * AvailableHolidayViewModel constructor.
+     * @param string $holidayName
+     * @param $holidayId int
+     * @param $yearDayDictionary array
+     */
+    function __construct($holidayName, $holidayId, $yearDayDictionary)
     {
         parent::__construct($holidayName);
         $this->holidayId = $holidayId;
-        $this->year = $year;
-        $this->days = $days;
+        $this->yearDayDictionary = $yearDayDictionary;
     }
 
     /**
@@ -49,34 +50,18 @@ class AvailableHolidayViewModel extends HolidayViewModelBase
     }
 
     /**
-     * @return int
+     * @return array
      */
-    public function getYear(): int
+    public function getYearDayDictionary(): array
     {
-        return $this->year;
+        return $this->yearDayDictionary;
     }
 
     /**
-     * @param int $year
+     * @param array $yearDayDictionary
      */
-    public function setYear(int $year)
+    public function setYearDayDictionary(array $yearDayDictionary)
     {
-        $this->year = $year;
-    }
-
-    /**
-     * @return int
-     */
-    public function getDays(): int
-    {
-        return $this->days;
-    }
-
-    /**
-     * @param int $days
-     */
-    public function setDays(int $days)
-    {
-        $this->days = $days;
+        $this->yearDayDictionary = $yearDayDictionary;
     }
 }

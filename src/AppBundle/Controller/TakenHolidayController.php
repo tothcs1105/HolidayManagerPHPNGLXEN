@@ -158,14 +158,27 @@ class TakenHolidayController extends BaseController
         $availableHolidayEntities = $this->availableHolidayService->getAvailableHolidaysByUserName($loggedUser);
         $params["availableHolidays"] = array();
         if($availableHolidayEntities){
+            $availableHolidaysGrouped = array();
             foreach ($availableHolidayEntities as $availableHoliday){
-                /**
-                 * @var Holiday
-                 */
-                $holidaytmp = $availableHoliday->getAhHoliday();
-                $ahtmp = new AvailableHolidayViewModel($holidaytmp->getHName(), $holidaytmp->getHId(), $availableHoliday->getAhYear(), $availableHoliday->getAhDays());
-                array_push($params["availableHolidays"], $ahtmp);
+                $holidayType = $availableHoliday->getAhHoliday();
+                if(array_key_exists($holidayType->getHId(), $availableHolidaysGrouped)){
+                    /**
+                     * @var $tmp AvailableHolidayViewModel
+                     */
+                    $tmp = $availableHolidaysGrouped[$holidayType->getHId()];
+                    $yearDayArray = $tmp->getYearDayDictionary();
+                    if(array_key_exists($availableHoliday->getAhYear(), $tmp->getYearDayDictionary())){
+                        $yearDayArray[$availableHoliday->getAhYear()] += $availableHoliday->getAhDays();
+                    }else{
+                        $yearDayArray[$availableHoliday->getAhYear()] = $availableHoliday->getAhDays();
+                    }
+                    $tmp->setYearDayDictionary($yearDayArray);
+                    $availableHolidaysGrouped[$holidayType->getHId()] = $tmp;
+                }else{
+                    $availableHolidaysGrouped[$holidayType->getHId()] = new AvailableHolidayViewModel($holidayType->getHName(), $holidayType->getHId(), array($availableHoliday->getAhYear() => $availableHoliday->getAhDays()));
+                }
             }
+            $params["availableHolidays"] = $availableHolidaysGrouped;
         }
         return $this->render('takenholiday/selectAvailableHoliday.html.twig', $params);
     }

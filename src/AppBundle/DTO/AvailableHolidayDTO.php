@@ -13,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class AvailableHolidayDTO extends BaseDTO
@@ -28,6 +29,10 @@ class AvailableHolidayDTO extends BaseDTO
      *     "this.getFrom() <= this.getTo()",
      *     message="From date should be less or equal to to date!"
      * )
+     * @Assert\Expression(
+     *     "this.getFrom().format('Y') == this.getYear()",
+     *     message="From date year is not valid!"
+     * )
      */
     private $from;
 
@@ -36,6 +41,10 @@ class AvailableHolidayDTO extends BaseDTO
      * @Assert\Expression(
      *     "this.getTo() >= this.getFrom()",
      *     message="To date should be greater or equal to from date!"
+     * )
+     * @Assert\Expression(
+     *     "this.getTo().format('Y') == this.getYear()",
+     *     message="To date year is not valid!"
      * )
      */
     private $to;
@@ -77,7 +86,9 @@ class AvailableHolidayDTO extends BaseDTO
         parent::__construct($req, $container);
         $this->year = $year;
         $this->from = new \DateTime();
-        $this->to = new \DateTime();
+        $this->from->setDate($year, 1, 1);
+        $this->to = new \DateTime($year);
+        $this->to->setDate($year,1,1);
     }
 
     /**

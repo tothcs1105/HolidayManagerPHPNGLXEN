@@ -17,16 +17,16 @@
                         <thead>
                         <tr>
                             <th>Holiday Name</th>
-                            <th class="text-center">Delete</th>
                             <th class="text-center">Modify</th>
+                            <th class="text-center">Delete</th>
                         </tr>
                         </thead>
                         <tbody>
                         {% for holidayType in holidayTypes %}
                             <tr>
                                 <td>{{ holidayType.getHolidayName() }}</td>
+                                <td align="center"><a href="{{ path("updateHolidayType", {'id' : holidayType.getHolidayId() }) }}"><span class="glyphicon glyphicon-wrench"></span></a>
                                 <td align="center"><a href="{{ path("deleteHolidayType", {'id' : holidayType.getHolidayId() }) }}"><span class="glyphicon glyphicon-minus"></span></a></td>
-                                <td align="center"><a href="{{ path("updateHolidayType", {'id' : holidayType.getHolidayId() }) }}"><span class="glyphicon glyphicon-wrench"></span></a></td>
                             </tr>
                         {% endfor %}
                         </tbody>

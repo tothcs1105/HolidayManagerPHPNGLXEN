@@ -19,16 +19,10 @@ interface IUserService
     public function getUsers();
 
     /**
-     * @param $userId int
+     * @param $username string
      * @return User
      */
-    public function getUser($userId);
-
-    /**
-     * @param $userName string
-     * @return User
-     */
-    public function getUserByUserName($userName);
+    public function getUser($username);
 
     /**
      * @param $user User
@@ -36,7 +30,7 @@ interface IUserService
     public function saveUser($user);
 
     /**
-     * @param $userId int
+     * @param $username string
      */
-    public function deleteUser($userId);
+    public function deleteUser($username);
 }

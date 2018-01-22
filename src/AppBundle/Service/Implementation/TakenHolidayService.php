@@ -13,7 +13,6 @@ use AppBundle\Service\Declaration\ITakenHolidayService;
 
 class TakenHolidayService extends CrudService implements ITakenHolidayService
 {
-
     function getRepo()
     {
         return $this->em->getRepository(TakenHoliday::class);
@@ -29,9 +28,9 @@ class TakenHolidayService extends CrudService implements ITakenHolidayService
         return $this->getRepo()->findOneBy(array("th_id"=>$takenHolidayId));
     }
 
-    function getTakenHolidaysByUser($userName)
+    function getTakenHolidaysByUser($username)
     {
-        return $this->getRepo()->findBy(array("th_user"=>$userName));
+        return $this->getRepo()->findBy(array("th_user"=>$username));
     }
 
     function deleteTakenHoliday($takenHolidayId)
@@ -56,5 +55,18 @@ class TakenHolidayService extends CrudService implements ITakenHolidayService
             ->getQuery();
 
         return $query->getResult();
+    }
+
+    function getTakenHolidaysByUserHolidayIdYear($username, $holidayid, $year)
+    {
+        $query = $this->getRepo()->createQueryBuilder('t')
+            ->join('t.th_holiday', 'h')
+            ->where('h.h_id = :hid AND t.th_user = :username AND year(t.th_from) = :year')
+            ->setParameter('hid', $holidayid)
+            ->setParameter('username', $username)
+            ->setParameter('year', $year)
+            ->getQuery();
+
+        return $query->getArrayResult();
     }
 }

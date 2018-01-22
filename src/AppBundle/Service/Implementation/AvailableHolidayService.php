@@ -29,19 +29,19 @@ class AvailableHolidayService extends CrudService implements IAvailableHolidaySe
         return $this->getRepo()->findAll();
     }
 
-    function getAvailableHoliday($userName, $holidayId, $year)
+    function getAvailableHoliday($username, $holidayId, $year)
     {
-        return $this->getRepo()->findOneBy(array("ah_user"=>$userName, "ah_holiday"=>$holidayId, "ah_year"=>$year));
+        return $this->getRepo()->findOneBy(array("ah_user"=>$username, "ah_holiday"=>$holidayId, "ah_year"=>$year));
     }
 
-    function getAvailableHolidaysByUserName($userName)
+    function getAvailableHolidaysByUsername($username)
     {
-        return $this->getRepo()->findBy(array("ah_user"=>$userName));
+        return $this->getRepo()->findBy(array("ah_user"=>$username));
     }
 
-    function deleteAvailableHoliday($userName, $holidayId, $year)
+    function deleteAvailableHoliday($username, $holidayId, $year)
     {
-        $holidayToDelete = $this->getAvailableHoliday($userName, $holidayId, $year);
+        $holidayToDelete = $this->getAvailableHoliday($username, $holidayId, $year);
         $this->em->remove($holidayToDelete);
         $this->em->flush();
     }
@@ -59,6 +59,18 @@ class AvailableHolidayService extends CrudService implements IAvailableHolidaySe
         ->where('h.h_id = :hid')
         ->setParameter('hid', $holidayId)
         ->getQuery();
+
+        return $query->getResult();
+    }
+
+    function getAvailableHolidayByUsernameHolidayIdYear($username, $holidayId, $year)
+    {
+        $query = $this->getRepo()->createQueryBuilder('a')
+            ->where('a.ah_year = :year AND a.ah_user = :user AND a.ah_holiday = :holidayId')
+            ->setParameter('year', $year)
+            ->setParameter('user', $username)
+            ->setParameter('holidayId', $holidayId)
+            ->getQuery();
 
         return $query->getResult();
     }

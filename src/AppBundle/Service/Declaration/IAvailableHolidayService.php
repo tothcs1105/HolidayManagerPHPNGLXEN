@@ -19,12 +19,12 @@ interface IAvailableHolidayService
     function getAvailableHolidays();
 
     /**
-     * @param $userName string
+     * @param $username string
      * @param $holidayId int
      * @param $year int
      * @return AvailableHoliday
      */
-    function getAvailableHoliday($userName, $holidayId, $year);
+    function getAvailableHoliday($username, $holidayId, $year);
 
     /**
      * @param $holidayId int
@@ -33,17 +33,17 @@ interface IAvailableHolidayService
     function getAvailableHolidaysByHolidayId($holidayId);
 
     /**
-     * @param $userName string
+     * @param $username string
      * @return AvailableHoliday[]
      */
-    function getAvailableHolidaysByUserName($userName);
+    function getAvailableHolidaysByUsername($username);
 
     /**
-     * @param $userName string
+     * @param $username string
      * @param $holidayId int
      * @param $year int
      */
-    function deleteAvailableHoliday($userName, $holidayId, $year);
+    function deleteAvailableHoliday($username, $holidayId, $year);
 
     /**
      * @param $availableHoliday AvailableHoliday

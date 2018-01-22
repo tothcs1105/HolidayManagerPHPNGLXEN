@@ -23,12 +23,12 @@ class UserService extends CrudService implements IUserService
     }
 
     /**
-     * @param string $userName
+     * @param string $username
      * @return User|object
      */
-    public function getUserByUserName($userName)
+    public function getUser($username)
     {
-        return $this->getRepo()->findOneBy(array("u_name"=>$userName));
+        return $this->getRepo()->findOneBy(array("u_name"=>$username));
     }
 
     /**
@@ -48,15 +48,6 @@ class UserService extends CrudService implements IUserService
     }
 
     /**
-     * @param $userId int
-     * @return User|object
-     */
-    public function getUser($userId)
-    {
-        return $this->getRepo()->findOneBy(array("u_id"=>$userId));
-    }
-
-    /**
      * @param $user User
      */
     public function saveUser($user)
@@ -66,11 +57,11 @@ class UserService extends CrudService implements IUserService
     }
 
     /**
-     * @param $userId int
+     * @param $username string
      */
-    public function deleteUser($userId)
+    public function deleteUser($username)
     {
-        $user = $this->getUser($userId);
+        $user = $this->getUser($username);
         $this->em->remove($user);
         $this->em->flush();
     }

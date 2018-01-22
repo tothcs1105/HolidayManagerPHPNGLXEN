@@ -44,7 +44,7 @@ class RegisterController extends BaseController
         $form = $registerDto->getForm();
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
-            $alreadyUser = $this->userService->getUserByUserName($registerDto->getUsername());
+            $alreadyUser = $this->userService->getUser($registerDto->getUsername());
             if($alreadyUser){
                 $this->addFlash(Constants::TWIG_NOTICE, "Username already exists!");
             }else{

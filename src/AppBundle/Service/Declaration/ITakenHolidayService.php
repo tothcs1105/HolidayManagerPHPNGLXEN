@@ -32,10 +32,10 @@ interface ITakenHolidayService
     function getTakenHolidaysByHolidayId($holidayId);
 
     /**
-     * @param $user string
+     * @param $username string
      * @return TakenHoliday[]
      */
-    function getTakenHolidaysByUser($userName);
+    function getTakenHolidaysByUser($username);
 
     /**
      * @param $takenHolidayId int

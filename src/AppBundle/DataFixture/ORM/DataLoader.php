@@ -70,13 +70,13 @@ class DataLoader implements FixtureInterface, ContainerAwareInterface
 
         //users
         $user1 = new User();
-        $user1->setUName("Józsi");
+        $user1->setUName("jozsi");
         $user1->setUPass(sha1("admin"));
         $user1->setUAdmin(true);
         $user1->setURole($role2);
 
         $user2 = new User();
-        $user2->setUName("Béla");
+        $user2->setUName("bela");
         $user2->setUPass(sha1("user"));
         $user2->setUAdmin(false);
         $user2->setURole($role1);

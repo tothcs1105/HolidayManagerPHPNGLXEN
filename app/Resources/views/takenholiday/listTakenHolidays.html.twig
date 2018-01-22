@@ -28,7 +28,7 @@
                                     <td>{{ takenHoliday.getHolidayName() }}</td>
                                     <td>{{ takenHoliday.getFrom() }}</td>
                                     <td>{{ takenHoliday.getTo() }}</td>
-                                    <td align="center"><a href="{{ path("deleteTakenHoliday", {'id' : takenHoliday.getHolidayId() }) }}"><span class="glyphicon glyphicon-minus"></a></td>
+                                    <td align="center"><a href="{{ path("deleteTakenHoliday", {'id' : takenHoliday.getHolidayId() }) }}"><span class="glyphicon glyphicon-minus"></span></a></td>
                                 </tr>
                             {% endfor %}
                         </tbody>

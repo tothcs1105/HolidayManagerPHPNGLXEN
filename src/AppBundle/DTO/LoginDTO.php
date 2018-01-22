@@ -14,15 +14,18 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class LoginDTO extends BaseDTO
 {
     /**
      * @var string
+     * @Assert\NotBlank()
      */
     private $userName;
     /**
      * @var string
+     * @Assert\NotBlank()
      */
     private $password;
 

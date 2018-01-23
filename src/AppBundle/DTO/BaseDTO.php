@@ -22,6 +22,11 @@ abstract class BaseDTO
      */
     protected $formFactory;
 
+    /**
+     * BaseDTO constructor.
+     * @param $req Request
+     * @param $container ContainerInterface
+     */
     public function __construct($req, $container)
     {
         $this->request=$req;

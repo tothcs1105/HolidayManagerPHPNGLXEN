@@ -9,11 +9,13 @@
 namespace AppBundle\DTO;
 
 
+use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class LoginDTO extends BaseDTO
@@ -29,6 +31,11 @@ class LoginDTO extends BaseDTO
      */
     private $password;
 
+    /**
+     * LoginDTO constructor.
+     * @param Request $req
+     * @param ContainerInterface $container
+     */
     public function __construct($req, $container)
     {
         parent::__construct($req, $container);

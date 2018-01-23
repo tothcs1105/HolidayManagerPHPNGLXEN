@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Holiday Manager | Select Holiday For {{ holidayUser }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading clearfix">
+                <a href="{{ path("listUserHolidays", { "username": holidayUser }) }}" class="btn btn-primary pull-left back-button"><i class="glyphicon glyphicon-arrow-left"></i></a>
+                <h2 class="panel-title pull-left hm-panel-title">Select Holiday For {{ holidayUser }}</h2>
+            </div>
+            <div class="panel-body">
+                {% if holidayTypes %}
+                    <table class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th>Holiday Type</th>
+                            <th class="text-center">Select</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for holidayType in holidayTypes %}
+                            <tr>
+                                <td>{{ holidayType.getHolidayName() }}</td>
+                                <td align="center"><a href="{{ path("addUserHoliday", {'holidayId' : holidayType.getHolidayId(), 'username' : holidayUser }) }}"><span class="glyphicon glyphicon-plus"></span></a></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <strong>Currently {{ holidayUser }} does not have any holiday!</strong>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

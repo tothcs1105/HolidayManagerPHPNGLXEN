@@ -10,7 +10,7 @@
             <div class="panel-heading clearfix">
                 <a href="{{ path("listUsers") }}" class="btn btn-primary pull-left back-button"><i class="glyphicon glyphicon-arrow-left"></i></a>
                 <h2 class="panel-title pull-left hm-panel-title">{{ holidayUser }}'s Holidays</h2>
-                <a href="{{ path("selectAvailableHoliday") }}" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i></a>
+                <a href="{{ path("selectHolidayForUser", {'username' : holidayUser }) }}" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i></a>
             </div>
             <div class="panel-body">
                 {% if userHolidays %}

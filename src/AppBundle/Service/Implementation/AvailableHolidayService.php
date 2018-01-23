@@ -74,4 +74,16 @@ class AvailableHolidayService extends CrudService implements IAvailableHolidaySe
 
         return $query->getResult();
     }
+
+    function getAvailableHolidaysByUsernameHolidayId($username, $holidayId)
+    {
+        $query = $this->getRepo()->createQueryBuilder('a')
+            ->join('a.ah_holiday', 'h')
+            ->where('h.h_id = :hid AND a.ah_user = :username')
+            ->setParameter('hid', $holidayId)
+            ->setParameter('username', $username)
+            ->getQuery();
+
+        return $query->getResult();
+    }
 }

@@ -19,6 +19,7 @@
                                 <th>Holiday Type</th>
                                 <th>From</th>
                                 <th>To</th>
+                                <th>Days</th>
                                 <th class="text-center">Delete</th>
                             </tr>
                         </thead>
@@ -28,6 +29,7 @@
                                     <td>{{ takenHoliday.getHolidayName() }}</td>
                                     <td>{{ takenHoliday.getFrom() }}</td>
                                     <td>{{ takenHoliday.getTo() }}</td>
+                                    <td>{{ takenHoliday.getDays() }}</td>
                                     <td align="center"><a href="{{ path("deleteTakenHoliday", {'id' : takenHoliday.getHolidayId() }) }}"><span class="glyphicon glyphicon-minus"></span></a></td>
                                 </tr>
                             {% endfor %}

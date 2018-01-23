@@ -2,6 +2,8 @@
 
 namespace AppBundle\ViewModel;
 
+use AppBundle\Common\Constants;
+
 class TakenHolidayViewModel extends HolidayViewModel
 {
     /**
@@ -15,17 +17,39 @@ class TakenHolidayViewModel extends HolidayViewModel
     private $to;
 
     /**
+     * @var int
+     */
+    private $days;
+
+    /**
      * TakenHolidayViewModel constructor.
      * @param $holidayId int
      * @param $holidayName string
-     * @param $from string
-     * @param $to string
+     * @param $from \DateTime
+     * @param $to \DateTime
      */
     function __construct($holidayId, $holidayName, $from, $to)
     {
         parent::__construct($holidayId, $holidayName);
-        $this->from = $from;
-        $this->to = $to;
+        $this->from = $from->format(Constants::DATE_FORMAT);
+        $this->to = $to->format(Constants::DATE_FORMAT);
+        $this->days = $from->diff($to)->d+1;
+    }
+
+    /**
+     * @return int
+     */
+    public function getDays(): int
+    {
+        return $this->days;
+    }
+
+    /**
+     * @param int $days
+     */
+    public function setDays(int $days)
+    {
+        $this->days = $days;
     }
 
     /**

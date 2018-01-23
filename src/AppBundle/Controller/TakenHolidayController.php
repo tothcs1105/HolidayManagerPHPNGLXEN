@@ -63,7 +63,7 @@ class TakenHolidayController extends BaseController
                  * @var Holiday
                  */
                 $holidaytmp = $takenHoliday->getThHoliday();
-                $thtmp = new TakenHolidayViewModel($takenHoliday->getThId(), $holidaytmp->getHName(), $takenHoliday->getThFrom()->format(Constants::DATE_FORMAT), $takenHoliday->getThTo()->format(Constants::DATE_FORMAT));
+                $thtmp = new TakenHolidayViewModel($takenHoliday->getThId(), $holidaytmp->getHName(), $takenHoliday->getThFrom(), $takenHoliday->getThTo());
                 array_push($params["takenHolidays"], $thtmp);
             }
         }
@@ -89,7 +89,7 @@ class TakenHolidayController extends BaseController
         if($form->isSubmitted() && $form->isValid()){
             $message = null;
             if($this->checkIfUserRequestIsValid($loggedUser, $id, $year, $availableHolidayDto->getFrom(), $availableHolidayDto->getTo(), $message)) {
-                $user = $this->userService->getUserByUserName($loggedUser);
+                $user = $this->userService->getUser($loggedUser);
                 $holiday = $this->holidayService->getHoliday($id);
 
                 $newTakenHoliday = new TakenHoliday();

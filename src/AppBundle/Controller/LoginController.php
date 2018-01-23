@@ -33,7 +33,7 @@ class LoginController extends BaseController
      * @Route("/login", name="login")
      */
     public function loginAction(Request $request){
-        $loginDto = new LoginDTO($request, $this->container, null);
+        $loginDto = new LoginDTO($this->container, null);
         $form = $loginDto->getForm();
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
@@ -44,7 +44,7 @@ class LoginController extends BaseController
                     if($user->getUAdmin() == true){
                         $this->get('session')->set(Constants::ADMIN_USER_KEY, true);
                     }
-                    $this->addFlash(Constants::TWIG_NOTICE, "Logged in successfully!");
+                    $this->addFlash(Constants::TWIG_NOTICE, "You have logged in successfully!");
                     return $this->redirectToRoute("takenHolidayList");
                 }else{
                     $this->addFlash(Constants::TWIG_NOTICE, "Wrong password!");
@@ -64,7 +64,7 @@ class LoginController extends BaseController
     public function logoutAction(){
         $this->checkLogin();
         $this->get('session')->clear();
-        $this->addFlash(Constants::TWIG_NOTICE, "Logged out successfully!");
+        $this->addFlash(Constants::TWIG_NOTICE, "You have logged out successfully!");
         return $this->redirectToRoute("login");
     }
 }

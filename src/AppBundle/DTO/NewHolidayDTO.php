@@ -39,14 +39,15 @@ class NewHolidayDTO extends BaseDTO
 
     /**
      * @var int
+     * @Assert\NotBlank()
      * @Assert\GreaterThan(0)
      * @Assert\LessThanOrEqual(365)
      */
     private $days;
 
-    public function __construct(Request $req, ContainerInterface $container, $year = null)
+    public function __construct(ContainerInterface $container, $year = null)
     {
-        parent::__construct($req, $container);
+        parent::__construct($container);
         $this->editing = $year != null;
         $this->year = $this->editing ? $year : date('Y');
         $this->days = 0;

@@ -36,9 +36,9 @@ class HolidayDTO extends BaseDTO
         $this->holidayName = $holidayName;
     }
 
-    public function __construct($req, $container, $holidayName = "")
+    public function __construct($container, $holidayName = "")
     {
-        parent::__construct($req, $container);
+        parent::__construct($container);
         $this->holidayName = $holidayName;
     }
 

@@ -10,10 +10,6 @@ use Symfony\Component\HttpFoundation\Request;
 abstract class BaseDTO
 {
     /**
-     * @var Request
-     */
-    protected $request;
-    /**
      * @var ContainerInterface
      */
     protected $container;
@@ -24,12 +20,10 @@ abstract class BaseDTO
 
     /**
      * BaseDTO constructor.
-     * @param $req Request
      * @param $container ContainerInterface
      */
-    public function __construct($req, $container)
+    public function __construct($container)
     {
-        $this->request=$req;
         $this->container=$container;
         $this->formFactory=$this->container->get("form.factory");
     }

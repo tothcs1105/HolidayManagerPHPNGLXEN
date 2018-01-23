@@ -40,7 +40,7 @@ class RegisterController extends BaseController
      * @Route("/register", name="register")
      */
     public function registerAction(Request $request){
-        $registerDto = new RegisterDTO($request, $this->container);
+        $registerDto = new RegisterDTO($this->container);
         $form = $registerDto->getForm();
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
@@ -53,7 +53,7 @@ class RegisterController extends BaseController
                 $newUser->setUPass(sha1($registerDto->getPassword()));
                 $newUser->setUAdmin(false);
                 $this->userService->saveUser($newUser);
-                $this->addFlash(Constants::TWIG_NOTICE, "You have successfully registered!");
+                $this->addFlash(Constants::TWIG_NOTICE, "You have registered successfully!");
                 return $this->redirectToRoute("login");
             }
         }

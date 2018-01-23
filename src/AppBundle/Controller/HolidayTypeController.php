@@ -58,7 +58,6 @@ class HolidayTypeController extends BaseController
             }
             return $this->render( 'holidaytype/holidayTypeList.html.twig', $params);
         }else{
-            $this->addFlash(Constants::TWIG_NOTICE, "You don't have administration privileges!");
             return $this->redirectToRoute("takenHolidayList");
         }
     }
@@ -75,14 +74,14 @@ class HolidayTypeController extends BaseController
             if($id){
                 $holiday = $this->holidayService->getHoliday($id);
                 if($holiday){
-                    $holidayDto = new HolidayDTO($request, $this->container, $holiday->getHName());
+                    $holidayDto = new HolidayDTO($this->container, $holiday->getHName());
                     $params["holiday"] = $holiday->getHName();
                 }else{
                     $this->addFlash(Constants::TWIG_NOTICE, "There is no such holiday type!");
                     return $this->redirectToRoute("takenHolidayList");
                 }
             }else{
-                $holidayDto = new HolidayDTO($request, $this->container);
+                $holidayDto = new HolidayDTO($this->container);
             }
             $form = $holidayDto->getForm();
             $form->handleRequest($request);
@@ -100,7 +99,6 @@ class HolidayTypeController extends BaseController
             $params["form"] = $form->createView();
             return $this->render("holidaytype/editHolidayType.html.twig", $params);
         }else{
-            $this->addFlash(Constants::TWIG_NOTICE, "You don't have administration privileges!");
             return $this->redirectToRoute("takenHolidayList");
         }
     }
@@ -123,13 +121,12 @@ class HolidayTypeController extends BaseController
                     $this->availableHolidayService->deleteAvailableHoliday($availableHoliday->getAhUser()->getUName(), $availableHoliday->getAhHoliday()->getHId(), $availableHoliday->getAhYear());
                 }
                 $this->holidayService->deleteHoliday($id);
-                $this->addFlash(Constants::TWIG_NOTICE, $holiday->getHName()." holiday successfully deleted!");
+                $this->addFlash(Constants::TWIG_NOTICE, $holiday->getHName()." holiday deleted successfully!");
             }else{
                 $this->addFlash(Constants::TWIG_NOTICE, "There is no holiday with this id!");
             }
             return $this->redirectToRoute("holidayTypes");
         }else{
-            $this->addFlash(Constants::TWIG_NOTICE, "You don't have administration privileges!");
             return $this->redirectToRoute("takenHolidayList");
         }
     }

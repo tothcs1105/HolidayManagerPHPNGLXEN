@@ -39,5 +39,5 @@ IF "%1"=="%database%" (
 IF "%1"=="%fixture%" (
     echo Applying fixtures...
 
-    php bin/console doctrine:fixtures:load --fixtures=src/AppBundle/DataFixture/ORM --no-interaction -vvv && echo Fixtures applied || echo ERROR!!!
+    php bin/console doctrine:fixtures:load --fixtures=src/AppBundle/DataFixture/ORM --no-interaction -vvv && echo Fixtures applied! || echo ERROR!!!
 )

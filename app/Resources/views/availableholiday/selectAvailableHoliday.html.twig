@@ -25,12 +25,14 @@
                             </thead>
                             <tbody>
                                 {% for year, days in availableHoliday.getYearDayDictionary() %}
-                                    <tr>
-                                        <td>{{ year }}</td>
-                                        <td>{{ days['total'] }}</td>
-                                        <td>{{ days['left'] }}</td>
-                                        <td align="center">{%  if days['left'] > 0 %}<a href="{{ path("takeHoliday", {'id': availableHoliday.getHolidayId(), 'year': year }) }}"><span class="glyphicon glyphicon-pushpin"></span></a>{% endif %}</td>
-                                    </tr>
+                                    {% if days['left'] > 0 %}
+                                        <tr>
+                                            <td>{{ year }}</td>
+                                            <td>{{ days['total'] }}</td>
+                                            <td>{{ days['left'] }}</td>
+                                            <td align="center"><a href="{{ path("takeHoliday", {'id': availableHoliday.getHolidayId(), 'year': year }) }}"><span class="glyphicon glyphicon-pushpin"></span></a></td>
+                                        </tr>
+                                    {% endif %}
                                 {% endfor %}
                             </tbody>
                         </table>

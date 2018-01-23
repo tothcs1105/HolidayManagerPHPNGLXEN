@@ -80,10 +80,10 @@ class TakenHolidayController extends BaseController
         $loggedUser = $this->checkLogin();
         $holiday = $this->holidayService->getHoliday($id);
         if (!$holiday) {
-            throw $this->createNotFoundException('The holiday does not exist!');
+            throw $this->createNotFoundException('The holiday does not exists!');
         }
         $holidayName = $holiday->getHName();
-        $availableHolidayDto = new AvailableHolidayDTO($request, $this->container, $year);
+        $availableHolidayDto = new AvailableHolidayDTO($this->container, $year);
         $form = $availableHolidayDto->getForm();
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){

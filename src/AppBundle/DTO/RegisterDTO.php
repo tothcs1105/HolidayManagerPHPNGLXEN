@@ -24,12 +24,12 @@ class RegisterDTO extends BaseDTO
      * @Assert\Length(
      *      min = 8,
      *      max = 50,
-     *      minMessage = "Username must must be at least {{ limit }} characters long",
+     *      minMessage = "Username must be at least {{ limit }} characters long",
      *      maxMessage = "Username cannot be longer than {{ limit }} characters"
      * )
      * @Assert\Regex(
      *     pattern = "/^\S+$/i",
-     *     message = "Username contains illegal character"
+     *     message = "Username contains illegal character(s)"
      * )
      */
     private $username;
@@ -39,19 +39,19 @@ class RegisterDTO extends BaseDTO
      * @Assert\Length(
      *      min = 8,
      *      max = 50,
-     *      minMessage = "Password must must be at least {{ limit }} characters long",
+     *      minMessage = "Password must be at least {{ limit }} characters long",
      *      maxMessage = "Password cannot be longer than {{ limit }} characters"
      * )
      * @Assert\Regex(
      *     pattern = "/^\S+$/i",
-     *     message = "Username contains illegal character"
+     *     message = "Username contains illegal character(s)"
      * )
      */
     private $password;
 
-    public function __construct($req, $container)
+    public function __construct($container)
     {
-        parent::__construct($req, $container);
+        parent::__construct($container);
         $this->username = "";
         $this->password = "";
     }

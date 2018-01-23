@@ -72,7 +72,6 @@ class UserController extends BaseController
             }
             return $this->render("user/listUsers.html.twig", $params);
         }else{
-            $this->addFlash(Constants::TWIG_NOTICE, "You don't have administration privileges!");
             return $this->redirectToRoute("takenHolidayList");
         }
     }
@@ -102,7 +101,6 @@ class UserController extends BaseController
                 return $this->redirectToRoute("listUsers");
             }
         }else{
-            $this->addFlash(Constants::TWIG_NOTICE, "You don't have administration privileges!");
             return $this->redirectToRoute("takenHolidayList");
         }
     }
@@ -149,7 +147,6 @@ class UserController extends BaseController
                 return $this->redirectToRoute("listUsers");
             }
         }else{
-            $this->addFlash(Constants::TWIG_NOTICE, "You don't have administration privileges!");
             return $this->redirectToRoute("takenHolidayList");
         }
     }
@@ -166,7 +163,7 @@ class UserController extends BaseController
                 $holiday = $this->holidayService->getHoliday($holidayId);
                 if($holiday){
                     $params = array();
-                    $newHolidayDto = new NewHolidayDTO($request, $this->container);
+                    $newHolidayDto = new NewHolidayDTO($this->container);
                     $form = $newHolidayDto->getForm();
                     $form->handleRequest($request);
                     if($form->isSubmitted() && $form->isValid()) {
@@ -190,7 +187,7 @@ class UserController extends BaseController
                     $params["form"] = $form->createView();
                     return $this->render("user/addNewHolidayUser.html.twig", $params);
                 }else{
-                    $this->addFlash(Constants::TWIG_NOTICE, "There is no holiday with the given id: ".$holidayId."!");
+                    $this->addFlash(Constants::TWIG_NOTICE, "There is no such holiday with the given id: ".$holidayId."!");
                     return $this->redirectToRoute("listUserHolidays", array("username"=>$username));
                 }
             }else{
@@ -198,7 +195,6 @@ class UserController extends BaseController
                 return $this->redirectToRoute("listUsers");
             }
         }else{
-            $this->addFlash(Constants::TWIG_NOTICE, "You don't have administration privileges!");
             return $this->redirectToRoute("takenHolidayList");
         }
     }
@@ -218,7 +214,7 @@ class UserController extends BaseController
                 if($holiday){
                     $availableHoliday = $this->availableHolidayService->getAvailableHoliday($username, $holidayId, $year);
                     if($availableHoliday){
-                        $editHolidayDto = new NewHolidayDTO($request, $this->container, $year);
+                        $editHolidayDto = new NewHolidayDTO($this->container, $year);
                         $editHolidayDto->setDays($availableHoliday->getAhDays());
                         $form = $editHolidayDto->getForm();
                         $form->handleRequest($request);
@@ -240,7 +236,7 @@ class UserController extends BaseController
                         return $this->redirectToRoute("listUserHolidays", array("username"=>$username));
                     }
                 }else{
-                    $this->addFlash(Constants::TWIG_NOTICE, "There is no holiday with the given id: ".$holidayId."!");
+                    $this->addFlash(Constants::TWIG_NOTICE, "There is no such holiday with the given id: ".$holidayId."!");
                     return $this->redirectToRoute("listUserHolidays", array("username"=>$username));
                 }
             }else{
@@ -248,7 +244,6 @@ class UserController extends BaseController
                 return $this->redirectToRoute("listUsers");
             }
         }else{
-            $this->addFlash(Constants::TWIG_NOTICE, "You don't have administration privileges!");
             return $this->redirectToRoute("takenHolidayList");
         }
     }
@@ -328,7 +323,6 @@ class UserController extends BaseController
                 return $this->redirectToRoute("listUsers");
             }
         }else{
-            $this->addFlash(Constants::TWIG_NOTICE, "You don't have administration privileges!");
             return $this->redirectToRoute("takenHolidayList");
         }
     }
@@ -347,7 +341,7 @@ class UserController extends BaseController
                     $user->setUAdmin(!$user->getUAdmin());
                     $this->userService->saveUser($user);
                     if($user->getUAdmin()){
-                        $this->addFlash(Constants::TWIG_NOTICE, $username."'s admin role have been granted!");
+                        $this->addFlash(Constants::TWIG_NOTICE, $username."'s admin privileges have been granted!");
                     }else{
                         $this->addFlash(Constants::TWIG_NOTICE, $username."'s admin privileges have been drawn!");
                     }
@@ -361,7 +355,6 @@ class UserController extends BaseController
                 return $this->redirectToRoute("listUsers");
             }
         }else{
-            $this->addFlash(Constants::TWIG_NOTICE, "You don't have administration privileges!");
             return $this->redirectToRoute("takenHolidayList");
         }
     }

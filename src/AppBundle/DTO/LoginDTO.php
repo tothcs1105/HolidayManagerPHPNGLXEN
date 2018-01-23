@@ -36,9 +36,9 @@ class LoginDTO extends BaseDTO
      * @param Request $req
      * @param ContainerInterface $container
      */
-    public function __construct($req, $container)
+    public function __construct($container)
     {
-        parent::__construct($req, $container);
+        parent::__construct($container);
     }
 
     /**

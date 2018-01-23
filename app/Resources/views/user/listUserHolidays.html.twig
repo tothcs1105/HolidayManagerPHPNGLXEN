@@ -19,7 +19,7 @@
                         <tr>
                             <th>Holiday Type</th>
                             <th>Year</th>
-                            <th>Days</th>
+                            <th>Total Days</th>
                             <th>Days Left</th>
                             <th class="text-center">Modify</th>
                             <th class="text-center">Delete</th>
@@ -27,7 +27,7 @@
                         </thead>
                         <tbody>
                         {% for userHoliday in userHolidays %}
-                            <tr>
+                            <tr {% if userHoliday.getDaysLeft() == 0 %}class="danger"{% endif %}>
                                 <td>{{ userHoliday.getHolidayName() }}</td>
                                 <td>{{ userHoliday.getYear() }}</td>
                                 <td>{{ userHoliday.getDays() }}</td>
@@ -39,7 +39,7 @@
                         </tbody>
                     </table>
                 {% else %}
-                    <strong>Currently {{ holidayUser }} does not have any holiday!</strong>
+                    <strong>Currently {{ holidayUser }} does not have any holiday option!</strong>
                 {% endif %}
             </div>
         </div>

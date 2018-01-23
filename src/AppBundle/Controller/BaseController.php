@@ -13,7 +13,7 @@ abstract class BaseController extends Controller
     {
         $loggedUser = $this->get('session')->get(Constants::USER_KEY);
         if(!$loggedUser){
-            $this->addFlash(Constants::TWIG_NOTICE, "You have to login first!");
+            $this->addFlash(Constants::TWIG_NOTICE, "You have to login!");
             throw $this->createAccessDeniedException();
         }
         return $loggedUser;

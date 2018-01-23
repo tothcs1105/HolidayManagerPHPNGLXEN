@@ -81,9 +81,9 @@ class AvailableHolidayDTO extends BaseDTO
         $this->to = $to;
     }
 
-    public function __construct($req, $container, $year)
+    public function __construct($container, $year)
     {
-        parent::__construct($req, $container);
+        parent::__construct($container);
         $this->year = $year;
         $this->from = new \DateTime();
         $this->from->setDate($year, 1, 1);

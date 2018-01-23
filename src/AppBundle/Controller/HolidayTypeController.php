@@ -45,7 +45,7 @@ class HolidayTypeController extends BaseController
     }
 
     /**
-     * @Route("/holidayTypes", name="holidayTypes")
+     * @Route("/holidaytypes", name="holidayTypes")
      */
     public function listHolidayTypesAction(Request $request){
         if($this->checkAdmin()){
@@ -65,8 +65,8 @@ class HolidayTypeController extends BaseController
 
     /**
      * @param Request $request
-     * @Route("/addHoliday", name="addHolidayType")
-     * @Route("/updateHoliday/{id}", name="updateHolidayType")
+     * @Route("/addholiday", name="addHolidayType")
+     * @Route("/updateholiday/{id}", name="updateHolidayType")
      */
     public function addUpdateHolidayTypeAction(Request $request, $id = null){
         if($this->checkAdmin()){
@@ -108,7 +108,7 @@ class HolidayTypeController extends BaseController
     /**
      * @param Request $request
      * @param $id int
-     * @Route("/deleteHolidayType/{id}", name="deleteHolidayType")
+     * @Route("/deleteholidaytype/{id}", name="deleteHolidayType")
      */
     public function deleteHolidayTypeAction(Request $request, $id){
         if($this->checkAdmin()){

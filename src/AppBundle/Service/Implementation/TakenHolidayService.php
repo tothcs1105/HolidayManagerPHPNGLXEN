@@ -74,4 +74,17 @@ class TakenHolidayService extends CrudService implements ITakenHolidayService
 
         return $query->getArrayResult();
     }
+
+    function isFromToDateOverlaps($username, $holidayId, $from, $to)
+    {
+        $query = $this->getRepo()->createQueryBuilder('t')
+            ->where('t.th_user = :username AND t.th_holiday = :holidayId AND t.th_from <= :to AND t.th_to >= :from')
+            ->setParameter('to', $to, \Doctrine\DBAL\Types\Type::DATETIME)
+            ->setParameter('from', $from, \Doctrine\DBAL\Types\Type::DATETIME)
+            ->setParameter('username', $username)
+            ->setParameter('holidayId', $holidayId)
+            ->getQuery();
+        
+        return sizeof($query->getResult()) > 0;
+    }
 }

@@ -29,7 +29,7 @@
                                         <td>{{ year }}</td>
                                         <td>{{ days['total'] }}</td>
                                         <td>{{ days['left'] }}</td>
-                                        <td align="center">{%  if days['left'] > 0 %}<a href="{{ path("takeHoliday", {'id': availableHoliday.getHolidayId(), 'year': year }) }}"><span class="glyphicon glyphicon-plus"></span></a>{% endif %}</td>
+                                        <td align="center">{%  if days['left'] > 0 %}<a href="{{ path("takeHoliday", {'id': availableHoliday.getHolidayId(), 'year': year }) }}"><span class="glyphicon glyphicon-pushpin"></span></a>{% endif %}</td>
                                     </tr>
                                 {% endfor %}
                             </tbody>

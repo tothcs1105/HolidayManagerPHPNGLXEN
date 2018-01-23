@@ -71,7 +71,7 @@ class TakenHolidayController extends BaseController
     }
 
     /**
-     * @Route("/takeHoliday/{id}/{year}", name="takeHoliday")
+     * @Route("/takenewholiday/{id}/{year}", name="takeHoliday")
      * @param $id int
      * @param $year int
      */
@@ -120,26 +120,38 @@ class TakenHolidayController extends BaseController
      * @return bool
      */
     private function checkIfUserRequestIsValid($username, $holidayId, $year, $from, $to, &$message){
-        $takenHolidays = $this->takenHolidayService->getTakenHolidaysByUser($username);
-        $availableHolidays = $this->availableHolidayService->getAvailableHolidaysByUserName($username);
+        $takenHolidays = $this->takenHolidayService->getTakenHolidaysByHolidayIdUsername($holidayId, $username);
+        $availableHolidays = $this->availableHolidayService->getAvailableHolidaysByUsernameHolidayId($username, $holidayId);
+
         $fromYear = intval($from->format('Y'));
         $toYear = intval($from->format('Y'));
+
         if($fromYear != $toYear) {
             $message = "From date and to date should be in the same year!";
             return false;
         }
+
         $takenDays = 0;
+        $overlap = false;
         foreach ($takenHolidays as $takenHoliday){
-            if($takenHoliday->getThHoliday()->getHId() == $holidayId && intval($takenHoliday->getThFrom()->format('Y')) == $year){
+            if(intval($takenHoliday->getThFrom()->format('Y')) == $year){
+                $overlap = $this->takenHolidayService->isFromToDateOverlaps($username, $holidayId, $from, $to);
                 $days = $takenHoliday->getThTo()->diff($takenHoliday->getThFrom())->d+1;
                 $takenDays += $days;
             }
         }
+
+        if($overlap){
+            $message = "The given interval conflicts with another one in the database!";
+            return false;
+        }
+
         $newDays = $to->diff($from)->d+1;
         $takenDays += $newDays;
+
         $availableHolidayDays = 0;
         foreach ($availableHolidays as $availableHoliday){
-            if($availableHoliday->getAhHoliday()->getHId() == $holidayId && $availableHoliday->getAhYear() == $year){
+            if($availableHoliday->getAhYear() == $year){
                 $availableHolidayDays += $availableHoliday->getAhDays();
             }
         }
@@ -151,7 +163,7 @@ class TakenHolidayController extends BaseController
     }
 
     /**
-     * @Route("/deleteTakenHoliday/{id}", name="deleteTakenHoliday")
+     * @Route("/removeholiday/{id}", name="deleteTakenHoliday")
      * @param $id int
      */
     public function deleteTakenHolidayAction(Request $request, $id){

@@ -17,12 +17,34 @@ class UserViewModel
     private $username;
 
     /**
+     * @var bool
+     */
+    private $admin;
+
+    /**
      * UserViewModel constructor.
      * @param $username string
      */
-    function __construct($username)
+    function __construct($username, $admin)
     {
         $this->username = $username;
+        $this->admin = $admin;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAdmin(): bool
+    {
+        return $this->admin;
+    }
+
+    /**
+     * @param bool $admin
+     */
+    public function setAdmin(bool $admin)
+    {
+        $this->admin = $admin;
     }
 
     /**

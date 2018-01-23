@@ -27,7 +27,7 @@ class AvailableHolidayDTO extends BaseDTO
      * @var \DateTime
      * @Assert\Expression(
      *     "this.getFrom() <= this.getTo()",
-     *     message="From date should be less or equal to to date!"
+     *     message="Start date should be less or equal to end date!"
      * )
      * @Assert\Expression(
      *     "this.getFrom().format('Y') == this.getYear()",
@@ -40,7 +40,7 @@ class AvailableHolidayDTO extends BaseDTO
      * @var \DateTime
      * @Assert\Expression(
      *     "this.getTo() >= this.getFrom()",
-     *     message="To date should be greater or equal to from date!"
+     *     message="End date should be greater or equal to start date!"
      * )
      * @Assert\Expression(
      *     "this.getTo().format('Y') == this.getYear()",

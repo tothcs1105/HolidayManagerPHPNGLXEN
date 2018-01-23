@@ -40,6 +40,15 @@ interface ITakenHolidayService
 
     /**
      * @param $username string
+     * @param $holidayId int
+     * @param $from \DateTime
+     * @param $to \DateTime
+     * @return bool
+     */
+    function isFromToDateOverlaps($username, $holidayId, $from, $to);
+
+    /**
+     * @param $username string
      * @return TakenHoliday[]
      */
     function getTakenHolidaysByUser($username);

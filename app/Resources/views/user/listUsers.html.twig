@@ -16,6 +16,7 @@
                     <tr>
                         <th>Username</th>
                         <th class="text-center">Manage User Holidays</th>
+                        <th class="text-center">Toggle Admin Role</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -23,6 +24,17 @@
                         <tr>
                             <td>{{ user.getUsername() }}</td>
                             <td align="center"><a href="{{ path("listUserHolidays", {'username' : user.getUsername }) }}"><span class="glyphicon glyphicon-wrench"></span></a></td>
+                            <td align="center">
+                                {% if loggedUser != user.getUsername() %}
+                                    <a href="{{ path("toggleAdminRole", {'username' : user.getUsername }) }}">
+                                        {% if user.isAdmin() %}
+                                            <span class="glyphicon glyphicon-plus"></span>
+                                        {% else %}
+                                            <span class="glyphicon glyphicon-minus"></span>
+                                        {% endif %}
+                                    </a>
+                                {% endif %}
+                            </td>
                         </tr>
                     {% endfor %}
                     </tbody>

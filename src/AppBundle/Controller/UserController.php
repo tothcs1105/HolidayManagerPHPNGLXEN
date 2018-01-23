@@ -57,7 +57,7 @@ class UserController extends BaseController
     }
 
     /**
-     * @Route("/listUsers", name="listUsers")
+     * @Route("/listusers", name="listUsers")
      */
     public function listUsersAction(Request $request){
         if($this->checkAdmin()){
@@ -66,7 +66,7 @@ class UserController extends BaseController
             $params["users"] = array();
             if($userEntities){
                 foreach ($userEntities as $userEntity){
-                    $userTmp = new UserViewModel($userEntity->getUName());
+                    $userTmp = new UserViewModel($userEntity->getUName(), $userEntity->getUAdmin());
                     array_push($params['users'], $userTmp);
                 }
             }
@@ -78,7 +78,7 @@ class UserController extends BaseController
     }
 
     /**
-     * @Route("/listAvailableHolidays/{username}", name="listUserHolidays")
+     * @Route("/listavailableholidays/{username}", name="listUserHolidays")
      * @param $username string
      */
     public function listUserHolidaysAction(Request $request, $username){
@@ -107,7 +107,7 @@ class UserController extends BaseController
     }
 
     /**
-     * @Route("/selectHolidayForUser/{username}", name="selectHolidayForUser")
+     * @Route("/selectholidayforuser/{username}", name="selectHolidayForUser")
      * @param Request $request
      * @param $username
      */
@@ -137,7 +137,7 @@ class UserController extends BaseController
     }
 
     /**
-     * @Route("/addUserHoliday/{username}/{holidayId}", name="addUserHoliday")
+     * @Route("/adduserholiday/{username}/{holidayId}", name="addUserHoliday")
      * @param $username string
      * @param $holidayId int
      */
@@ -186,7 +186,7 @@ class UserController extends BaseController
     }
 
     /**
-     * @Route("/updateUserHoliday/{username}/{holidayId}/{year}", name="updateUserHoliday")
+     * @Route("/updateuserholiday/{username}/{holidayId}/{year}", name="updateUserHoliday")
      * @param Request $request
      * @param $username
      * @param $holidayId
@@ -281,7 +281,7 @@ class UserController extends BaseController
     }
 
     /**
-     * @Route("/deleteUserHoliday/{username}/{holidayId}/{year}", name="deleteUserHoliday")
+     * @Route("/deleteuserholiday/{username}/{holidayId}/{year}", name="deleteUserHoliday")
      * @param Request $request
      * @param $username string
      * @param $holidayId int
@@ -307,6 +307,39 @@ class UserController extends BaseController
                 return $this->redirectToRoute("listUserHolidays", array("username" => $username));
             }else{
                 $this->addFlash(Constants::TWIG_NOTICE, "There is no such user: ".$username."!");
+                return $this->redirectToRoute("listUsers");
+            }
+        }else{
+            $this->addFlash(Constants::TWIG_NOTICE, "You don't have administration privileges!");
+            return $this->redirectToRoute("takenHolidayList");
+        }
+    }
+
+    /**
+     * @Route("/toggleadminrole/{username}", name="toggleAdminRole")
+     * @param Request $request
+     * @param string $username
+     */
+    public function toggleUserAdminRoleAction(Request $request, $username){
+        if($this->checkAdmin()){
+            $loggedUsername = $this->get('session')->get(Constants::USER_KEY);
+            if($loggedUsername != $username){
+                $user = $this->userService->getUser($username);
+                if($user){
+                    $user->setUAdmin(!$user->getUAdmin());
+                    $this->userService->saveUser($user);
+                    if($user->getUAdmin()){
+                        $this->addFlash(Constants::TWIG_NOTICE, $username."'s admin role have been granted!");
+                    }else{
+                        $this->addFlash(Constants::TWIG_NOTICE, $username."'s admin privileges have been drawn!");
+                    }
+                    return $this->redirectToRoute("listUsers");
+                }else{
+                    $this->addFlash(Constants::TWIG_NOTICE, "There is no such user in the database!");
+                    return $this->redirectToRoute("listUsers");
+                }
+            }else{
+                $this->addFlash(Constants::TWIG_NOTICE, "You can't change your own role!");
                 return $this->redirectToRoute("listUsers");
             }
         }else{

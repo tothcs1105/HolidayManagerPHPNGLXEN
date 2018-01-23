@@ -37,7 +37,7 @@ class AvailableHolidayController extends BaseController
     }
 
     /**
-     * @Route("/availableHoliday", name="selectAvailableHoliday")
+     * @Route("/availableholidays", name="selectAvailableHoliday")
      */
     public function listAvailableHolidaysAction(Request $request)
     {

@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Holiday Manager | Take Holiday
+    Holiday Manager | Take New {{ holidayName }}
 {% endblock %}
 
 {% block body %}
     <div class="container">
         <div class="panel panel-primary">
             <div class="panel-heading clearfix">
-                <a href="{{ path("selectAvailableHoliday") }}" class="btn btn-primary pull-left back-button"><i class="glyphicon glyphicon-arrow-left"></i></a>
-                <h2 class="panel-title pull-left hm-panel-title">New Holiday: {{ holidayName }}</h2>
+                <a href="{{ path("selectAvailableHoliday") }}" class="btn btn-primary pull-left back-button" data-toggle="tooltip" title="Back to available holidays"><i class="glyphicon glyphicon-menu-left"></i></a>
+                <h2 class="panel-title pull-left hm-panel-title">Take New {{ holidayName }}</h2>
             </div>
             <div class="panel-body">
                 {% form_theme form 'bootstrap_3_layout.html.twig' %}

@@ -37,8 +37,14 @@
                         <li><a href="{{ path("selectAvailableHoliday") }}">Available Holidays</a></li>
                     {% endif %}
                     {% if admin == true %}
-                        <li><a href="{{ path("holidayTypes") }}">Manage Holiday Types</a></li>
-                        <li><a href="{{ path("listUsers") }}">Manage Users</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Admin
+                                <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ path("holidayTypes") }}">Manage Holiday Types</a></li>
+                                <li><a href="{{ path("listUsers") }}">Manage Users</a></li>
+                            </ul>
+                        </li>
                     {% endif %}
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -47,12 +53,12 @@
                             <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-user"></span> {{ loggedUser }}
                                 <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="{{ path("logout") }}"><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
+                                <li><a href="{{ path("logout") }}"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
                             </ul>
                         </li>
                     {% else %}
                         <li><a href="{{ path("register") }}"><span class="glyphicon glyphicon-user"></span> Register</a></li>
-                        <li><a href="{{ path("login") }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        <li><a href="{{ path("login") }}"><span class="glyphicon glyphicon-log-in"></span> Log In</a></li>
                     {% endif %}
                 </ul>
             </div>
@@ -64,5 +70,10 @@
             {% endjavascripts %}
         {% endblock %}
         <div id="snackbar"></div>
+        <script>
+            $(document).ready(function(){
+                $('[data-toggle="tooltip"]').tooltip();
+            });
+        </script>
     </body>
 </html>

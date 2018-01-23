@@ -3,7 +3,7 @@
 
 {% block title %}
     {% if holiday is defined %}
-        Holiday Manager | Edit Holiday Type: {{ holiday }}
+        Holiday Manager | Edit {{ holiday }}
     {% else %}
         Holiday Manager | New Holiday Type
     {% endif %}
@@ -13,10 +13,10 @@
     <div class="container">
         <div class="panel panel-primary">
             <div class="panel-heading clearfix">
-                <a href="{{ path("holidayTypes") }}" class="btn btn-primary pull-left back-button"><i class="glyphicon glyphicon-arrow-left"></i></a>
+                <a href="{{ path("holidayTypes") }}" class="btn btn-primary pull-left back-button" data-toggle="tooltip" title="Back to holiday types"><i class="glyphicon glyphicon-menu-left"></i></a>
                 <h2 class="panel-title pull-left hm-panel-title">
                     {% if holiday is defined %}
-                        Edit Holiday Type: {{ holiday }}
+                        Edit {{ holiday }}
                     {% else %}
                         New Holiday Type
                     {% endif %}

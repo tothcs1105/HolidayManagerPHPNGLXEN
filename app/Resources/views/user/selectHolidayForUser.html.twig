@@ -8,8 +8,8 @@
     <div class="container">
         <div class="panel panel-primary">
             <div class="panel-heading clearfix">
-                <a href="{{ path("listUserHolidays", { "username": holidayUser }) }}" class="btn btn-primary pull-left back-button"><i class="glyphicon glyphicon-arrow-left"></i></a>
-                <h2 class="panel-title pull-left hm-panel-title">Select Holiday For {{ holidayUser }}</h2>
+                <a href="{{ path("listUserHolidays", { "username": holidayUser }) }}" class="btn btn-primary pull-left back-button" data-toggle="tooltip" title="Back to {{ holidayUser }}'s holiday options"><i class="glyphicon glyphicon-menu-left"></i></a>
+                <h2 class="panel-title pull-left hm-panel-title">Select Holiday Option For {{ holidayUser }}</h2>
             </div>
             <div class="panel-body">
                 {% if holidayTypes %}
@@ -24,7 +24,7 @@
                         {% for holidayType in holidayTypes %}
                             <tr>
                                 <td>{{ holidayType.getHolidayName() }}</td>
-                                <td align="center"><a href="{{ path("addUserHoliday", {'holidayId' : holidayType.getHolidayId(), 'username' : holidayUser }) }}"><span class="glyphicon glyphicon-plus"></span></a></td>
+                                <td align="center"><a href="{{ path("addUserHoliday", {'holidayId' : holidayType.getHolidayId(), 'username' : holidayUser }) }}"  data-toggle="tooltip" title="Add new {{ holidayType.getHolidayName() }} option for {{ holidayUser }}"><span class="glyphicon glyphicon-plus"></span></a></td>
                             </tr>
                         {% endfor %}
                         </tbody>

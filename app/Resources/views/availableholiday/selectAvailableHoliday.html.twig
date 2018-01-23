@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    Holiday Manager | Available Holidays
+    Holiday Manager | Available Holiday Options
 {% endblock %}
 
 {% block body %}
     <div class="container">
         <div class="panel panel-primary">
             <div class="panel-heading clearfix">
-                <h2 class="panel-title pull-left hm-panel-title">Available Holidays</h2>
+                <h2 class="panel-title pull-left hm-panel-title">Available Holiday Options</h2>
             </div>
             <div class="panel-body">
                 {% if availableHolidays %}
@@ -30,7 +30,7 @@
                                             <td>{{ year }}</td>
                                             <td>{{ days['total'] }}</td>
                                             <td>{{ days['left'] }}</td>
-                                            <td align="center"><a href="{{ path("takeHoliday", {'id': availableHoliday.getHolidayId(), 'year': year }) }}"><span class="glyphicon glyphicon-pushpin"></span></a></td>
+                                            <td align="center"><a href="{{ path("takeHoliday", {'id': availableHoliday.getHolidayId(), 'year': year }) }}" data-toggle="tooltip" title="Take new {{ availableHoliday.getHolidayName() }} in {{ year }}"><span class="glyphicon glyphicon-plus"></span></a></td>
                                         </tr>
                                     {% endif %}
                                 {% endfor %}
@@ -38,7 +38,7 @@
                         </table>
                     {% endfor %}
                 {% else %}
-                    <strong>Currently you can't take any holiday!</strong>
+                    <strong>Currently you don't have any holiday option!</strong>
                 {% endif %}
             </div>
             </div>

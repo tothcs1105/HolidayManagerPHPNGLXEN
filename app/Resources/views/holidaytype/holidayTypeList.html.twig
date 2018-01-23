@@ -9,7 +9,7 @@
         <div class="panel panel-primary">
             <div class="panel-heading clearfix">
                 <h2 class="panel-title pull-left hm-panel-title">Holiday Types</h2>
-                <a href="{{ path("addHolidayType") }}" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i></a>
+                <a href="{{ path("addHolidayType") }}" class="btn btn-primary pull-right" data-toggle="tooltip" title="Add new holiday type"><i class="glyphicon glyphicon-plus"></i></a>
             </div>
             <div class="panel-body">
                 {% if holidayTypes %}
@@ -17,7 +17,7 @@
                         <thead>
                         <tr>
                             <th>Holiday Name</th>
-                            <th class="text-center">Modify</th>
+                            <th class="text-center">Edit</th>
                             <th class="text-center">Delete</th>
                         </tr>
                         </thead>
@@ -25,8 +25,8 @@
                         {% for holidayType in holidayTypes %}
                             <tr>
                                 <td>{{ holidayType.getHolidayName() }}</td>
-                                <td align="center"><a href="{{ path("updateHolidayType", {'id' : holidayType.getHolidayId() }) }}"><span class="glyphicon glyphicon-pencil"></span></a>
-                                <td align="center"><a href="{{ path("deleteHolidayType", {'id' : holidayType.getHolidayId() }) }}"><span class="glyphicon glyphicon-remove"></span></a></td>
+                                <td align="center"><a href="{{ path("updateHolidayType", {'id' : holidayType.getHolidayId() }) }}" data-toggle="tooltip" title="Edit {{ holidayType.getHolidayName() }}"><span class="glyphicon glyphicon-pencil"></span></a>
+                                <td align="center"><a href="{{ path("deleteHolidayType", {'id' : holidayType.getHolidayId() }) }}" data-toggle="tooltip" title="Delete {{ holidayType.getHolidayName() }}"><span class="glyphicon glyphicon-remove"></span></a></td>
                             </tr>
                         {% endfor %}
                         </tbody>

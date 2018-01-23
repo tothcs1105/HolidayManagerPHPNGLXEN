@@ -15,7 +15,7 @@
                     <thead>
                     <tr>
                         <th>Username</th>
-                        <th class="text-center">Manage User Holidays</th>
+                        <th class="text-center">Manage User Holiday Options</th>
                         <th class="text-center">Toggle Admin Role</th>
                     </tr>
                     </thead>
@@ -23,12 +23,12 @@
                     {% for user in users %}
                         <tr>
                             <td>{{ user.getUsername() }}</td>
-                            <td align="center"><a href="{{ path("listUserHolidays", {'username' : user.getUsername }) }}"><span class="glyphicon glyphicon-wrench"></span></a></td>
+                            <td align="center"><a href="{{ path("listUserHolidays", {'username' : user.getUsername }) }}" data-toggle="tooltip" title="Manage {{ user.getUsername }}'s holiday options"><span class="glyphicon glyphicon-wrench"></span></a></td>
                             <td align="center">
                                 {% if loggedUser != user.getUsername() %}
-                                    <a href="{{ path("toggleAdminRole", {'username' : user.getUsername }) }}">
+                                    <a href="{{ path("toggleAdminRole", {'username' : user.getUsername }) }}" data-toggle="tooltip" {% if user.isAdmin() %}title="Take away {{ user.getUsername }}'s admin privileges"{% else %}title="Give {{ user.getUsername }} admin privileges"{% endif %}>
                                         {% if user.isAdmin() %}
-                                            <span class="glyphicon glyphicon-plus"></span>
+                                            <span class="glyphicon glyphicon-ok"></span>
                                         {% else %}
                                             <span class="glyphicon glyphicon-minus"></span>
                                         {% endif %}

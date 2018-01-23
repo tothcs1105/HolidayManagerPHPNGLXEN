@@ -24,7 +24,7 @@ class LoginDTO extends BaseDTO
      * @var string
      * @Assert\NotBlank()
      */
-    private $userName;
+    private $username;
     /**
      * @var string
      * @Assert\NotBlank()
@@ -44,17 +44,17 @@ class LoginDTO extends BaseDTO
     /**
      * @return string
      */
-    public function getUserName()
+    public function getUsername()
     {
-        return $this->userName;
+        return $this->username;
     }
 
     /**
-     * @param string $userName
+     * @param string $username
      */
-    public function setUserName(string $userName)
+    public function setUsername(string $username)
     {
-        $this->userName = $userName;
+        $this->username = $username;
     }
 
     /**
@@ -79,7 +79,7 @@ class LoginDTO extends BaseDTO
     public function getForm()
     {
         $builder = $this->formFactory->createBuilder(FormType::class, $this);
-        $builder->add("userName", TextType::class, array(
+        $builder->add("username", TextType::class, array(
             'required' => true,
             'label' => "Username"
         ));
@@ -87,7 +87,7 @@ class LoginDTO extends BaseDTO
             'required' => true,
             'label' => "Password"
         ));
-        $builder->add("Login", SubmitType::class);
+        $builder->add("Log In", SubmitType::class);
 
         return $builder->getForm();
     }

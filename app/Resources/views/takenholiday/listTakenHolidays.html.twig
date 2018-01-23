@@ -9,7 +9,7 @@
         <div class="panel panel-primary">
             <div class="panel-heading clearfix">
                 <h2 class="panel-title pull-left hm-panel-title">Taken Holidays</h2>
-                <a href="{{ path("selectAvailableHoliday") }}" class="btn btn-primary pull-right"><i class="glyphicon glyphicon-plus"></i></a>
+                <a href="{{ path("selectAvailableHoliday") }}" class="btn btn-primary pull-right" data-toggle="tooltip" title="Take new holiday"><i class="glyphicon glyphicon-plus"></i></a>
             </div>
             <div class="panel-body">
                 {% if takenHolidays %}
@@ -30,7 +30,7 @@
                                     <td>{{ takenHoliday.getFrom() }}</td>
                                     <td>{{ takenHoliday.getTo() }}</td>
                                     <td>{{ takenHoliday.getDays() }}</td>
-                                    <td align="center"><a href="{{ path("deleteTakenHoliday", {'id' : takenHoliday.getHolidayId() }) }}"><span class="glyphicon glyphicon-remove"></span></a></td>
+                                    <td align="center"><a href="{{ path("deleteTakenHoliday", {'id' : takenHoliday.getHolidayId() }) }}" data-toggle="tooltip" title="Delete from taken holidays"><span class="glyphicon glyphicon-remove"></span></a></td>
                                 </tr>
                             {% endfor %}
                         </tbody>

@@ -37,7 +37,7 @@ class LoginController extends BaseController
         $form = $loginDto->getForm();
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
-            $user = $this->userService->getUser($loginDto->getUserName());
+            $user = $this->userService->getUser($loginDto->getUsername());
             if($user){
                 if(sha1($loginDto->getPassword()) == $user->getUPass()){
                     $this->get('session')->set(Constants::USER_KEY, $user->getUName());

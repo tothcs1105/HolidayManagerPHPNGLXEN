@@ -94,9 +94,25 @@ class DataLoader implements FixtureInterface, ContainerAwareInterface
         $holiday3 = new Holiday();
         $holiday3->setHName("Family Responsibility Leave");
 
+        $holiday4 = new Holiday();
+        $holiday4->setHName("Bereavement Leave");
+
+        $holiday5 = new Holiday();
+        $holiday5->setHName("Parental Leave");
+
+        $holiday6 = new Holiday();
+        $holiday6->setHName("Overtime/Compensatory Time Off");
+
+        $holiday7 = new Holiday();
+        $holiday7->setHName("Annual Leave");
+
         $this->em->persist($holiday1);
         $this->em->persist($holiday2);
         $this->em->persist($holiday3);
+        $this->em->persist($holiday4);
+        $this->em->persist($holiday5);
+        $this->em->persist($holiday6);
+        $this->em->persist($holiday7);
 
         $this->em->flush();
 

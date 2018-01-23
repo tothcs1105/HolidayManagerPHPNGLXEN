@@ -91,7 +91,8 @@ class UserController extends BaseController
                 $params["userHolidays"] = array();
                 if($availableHolidayEntities){
                     foreach ($availableHolidayEntities as $availableHoliday) {
-                        $userHolidayTmp = new UserHolidayViewModel($availableHoliday->getAhHoliday()->getHId(),$availableHoliday->getAhHoliday()->getHName(), $user->getUName(), $availableHoliday->getAhYear(), $availableHoliday->getAhDays());
+                        $daysLeft = $this->leftDaysCount($username, $availableHoliday->getAhHoliday()->getHId(), $availableHoliday->getAhYear(), $availableHoliday->getAhDays());
+                        $userHolidayTmp = new UserHolidayViewModel($availableHoliday->getAhHoliday()->getHId(),$availableHoliday->getAhHoliday()->getHName(), $user->getUName(), $availableHoliday->getAhYear(), $availableHoliday->getAhDays(), $daysLeft);
                         array_push($params["userHolidays"], $userHolidayTmp);
                     }
                 }
@@ -104,6 +105,23 @@ class UserController extends BaseController
             $this->addFlash(Constants::TWIG_NOTICE, "You don't have administration privileges!");
             return $this->redirectToRoute("takenHolidayList");
         }
+    }
+
+    /**
+     * @param $username string
+     * @param $holidayId int
+     * @param $year int
+     * @param $availableDays int
+     */
+    private function leftDaysCount($username, $holidayId, $year, $availableDays){
+        $takenHolidays = $this->takenHolidayService->getTakenHolidaysByHolidayIdUsername($holidayId, $username);
+        $takenDays = 0;
+        foreach ($takenHolidays as $takenHoliday){
+            if(intval($takenHoliday->getThFrom()->format('Y')) == $year){
+                $takenDays += $takenHoliday->getThFrom()->diff($takenHoliday->getThTo())->d+1;
+            }
+        }
+        return $availableDays - $takenDays;
     }
 
     /**

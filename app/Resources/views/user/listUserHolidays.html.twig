@@ -20,6 +20,7 @@
                             <th>Holiday Type</th>
                             <th>Year</th>
                             <th>Days</th>
+                            <th>Days Left</th>
                             <th class="text-center">Modify</th>
                             <th class="text-center">Delete</th>
                         </tr>
@@ -30,6 +31,7 @@
                                 <td>{{ userHoliday.getHolidayName() }}</td>
                                 <td>{{ userHoliday.getYear() }}</td>
                                 <td>{{ userHoliday.getDays() }}</td>
+                                <td>{{ userHoliday.getDaysLeft() }}</td>
                                 <td align="center"><a href="{{ path("updateUserHoliday", {'holidayId' : userHoliday.getHolidayId(), 'year' : userHoliday.getYear(), 'username' : holidayUser }) }}"><span class="glyphicon glyphicon-pencil"></span></a></td>
                                 <td align="center"><a href="{{ path("deleteUserHoliday", {'holidayId' : userHoliday.getHolidayId(), 'year' : userHoliday.getYear(), 'username' : holidayUser }) }}"><span class="glyphicon glyphicon-remove"></span></a></td>
                             </tr>

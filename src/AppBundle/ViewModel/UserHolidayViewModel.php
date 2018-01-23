@@ -33,20 +33,43 @@ class UserHolidayViewModel
     private $days;
 
     /**
+     * @var int
+     */
+    private $daysLeft;
+
+    /**
      * UserHolidayViewModel constructor.
      * @param $holidayId int
      * @param $holidayName string
      * @param $username string
      * @param $year int
      * @param $days int
+     * @param $daysLeft int
      */
-    function __construct($holidayId, $holidayName, $username, $year, $days)
+    function __construct($holidayId, $holidayName, $username, $year, $days, $daysLeft)
     {
         $this->holidayId = $holidayId;
         $this->holidayName = $holidayName;
         $this->username = $username;
         $this->year = $year;
         $this->days = $days;
+        $this->daysLeft = $daysLeft;
+    }
+
+    /**
+     * @return int
+     */
+    public function getDaysLeft(): int
+    {
+        return $this->daysLeft;
+    }
+
+    /**
+     * @param int $daysLeft
+     */
+    public function setDaysLeft(int $daysLeft)
+    {
+        $this->daysLeft = $daysLeft;
     }
 
     /**
